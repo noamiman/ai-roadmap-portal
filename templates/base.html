@@ -323,9 +323,10 @@
         /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
             body { flex-direction: column; }
-            nav { width: 100%; height: auto; position: sticky; top: 0; padding: 1rem; border-left: none; border-bottom: 1px solid var(--border); flex-direction: row; overflow-x: auto; }
+            nav { width: 100%; height: auto; position: sticky; top: 0; padding: 1rem; border-left: none; border-bottom: 1px solid var(--border); flex-direction: column; align-items: stretch; }
             .logo { display: none; }
-            .nav-item { white-space: nowrap; padding: 0.5rem 1rem; }
+            .nav-links { display: grid; grid-template-columns: 1fr; gap: 0.45rem; width: 100%; }
+            .nav-item { width: 100%; justify-content: center; white-space: normal; padding: 0.65rem 0.9rem; }
             main { margin-right: 0; padding: 1.5rem; }
             .main-layout { grid-template-columns: 1fr; }
             .step-marker { display: none; }
@@ -333,7 +334,14 @@
             .contact-links-row { flex-direction: column; }
             .contact-link-card { width: 100%; min-width: 0; justify-content: flex-start; }
             .subject-title { flex-direction: column; align-items: flex-start; }
-            .floating-creators-btn { top: 14px; left: 14px; }
+            .floating-creators-btn {
+                top: auto;
+                bottom: 16px;
+                left: 12px;
+                font-size: 0.82rem;
+                padding: 0.65rem 0.9rem;
+                box-shadow: 0 10px 22px rgba(2, 132, 199, 0.32);
+            }
             .creators-panel { width: 92vw; }
             .a11y-toolbar { right: 12px; bottom: 12px; }
             .a11y-options { min-width: 205px; }
