@@ -145,7 +145,7 @@ def generate_ultimate_portal(data, output_file="index.html"):
             platform = c.get("platform", "Web")
             platform_class = platform_slug(platform)
             creators_cards_html += f'''
-            <a href="{c.get('url', '#')}" target="_blank" class="creator-panel-card">
+            <a href="{c.get('url', '#')}" target="_blank" rel="noopener noreferrer" class="creator-panel-card" aria-label="{c.get('name', '')} - נפתח בלשונית חדשה">
                 <div class="creator-panel-head">
                     <span class="creator-name">{c.get('name', '')}</span>
                     <span class="creator-platform-badge platform-{platform_class}">{platform}</span>
@@ -159,9 +159,9 @@ def generate_ultimate_portal(data, output_file="index.html"):
             ⭐ יוצרים מומלצים
         </button>
         <div id="creatorsBackdrop" class="creators-backdrop" onclick="closeCreatorsPanel()"></div>
-        <aside id="creatorsPanel" class="creators-panel" aria-hidden="true">
+        <aside id="creatorsPanel" class="creators-panel" role="dialog" aria-modal="true" aria-labelledby="creatorsPanelTitle" aria-hidden="true">
             <div class="creators-panel-header">
-                <h3>{creators_data.get('title', 'יוצרים מומלצים')}</h3>
+                <h3 id="creatorsPanelTitle">{creators_data.get('title', 'יוצרים מומלצים')}</h3>
                 <button type="button" class="creators-close" onclick="closeCreatorsPanel()" aria-label="סגור">×</button>
             </div>
             <p class="creators-panel-subtitle">{creators_data.get('description', '')}</p>
@@ -176,14 +176,15 @@ def generate_ultimate_portal(data, output_file="index.html"):
 
         # הקטגוריה הראשונה ב-JSON תהיה הפעילה (Active) כברירת מחדל
         active_class = "active" if visible_index == 0 else ""
+        aria_current = 'aria-current="page"' if visible_index == 0 else ""
         visible_index += 1
         
         # 1. בניית פריט בתפריט הניווט
         nav_html += f'''
-        <div class="nav-item {active_class}" onclick="showSection('{key}', this)">
+        <button type="button" class="nav-item {active_class}" onclick="showSection('{key}', this)" aria-controls="{key}" {aria_current}>
             <span class="nav-icon">{val.get('emoji', '🚀')}</span>
             <span class="nav-text">{val.get('title', 'ללא כותרת')}</span>
-        </div>'''
+        </button>'''
         
         # 2. בניית תוכן הסקשן
         if key.lower() == "home":
@@ -198,14 +199,14 @@ def generate_ultimate_portal(data, output_file="index.html"):
                     <div class="contact-links">
                         <p><strong>בואו נשתמע:</strong></p>
                         <div class="contact-links-row">
-                            <a href="https://www.linkedin.com/in/noamiman/" target="_blank" class="contact-link-card">
+                            <a href="https://www.linkedin.com/in/noamiman/" target="_blank" rel="noopener noreferrer" class="contact-link-card" aria-label="LinkedIn - נפתח בלשונית חדשה">
                                 <span class="contact-link-icon">in</span>
                                 <span class="contact-link-text">
                                     <span class="contact-link-title">LinkedIn</span>
                                     <span class="contact-link-subtitle">תתחברו אליי</span>
                                 </span>
                             </a>
-                            <a href="https://github.com/noamiman" target="_blank" class="contact-link-card">
+                            <a href="https://github.com/noamiman" target="_blank" rel="noopener noreferrer" class="contact-link-card" aria-label="GitHub - נפתח בלשונית חדשה">
                                 <span class="contact-link-icon">&lt;/&gt;</span>
                                 <span class="contact-link-text">
                                     <span class="contact-link-title">GitHub</span>
@@ -238,12 +239,12 @@ def generate_ultimate_portal(data, output_file="index.html"):
                         <div class="step-item">
                             <div class="step-marker">{idx}</div>
                             <div class="step-card-wrapper" data-url="{g_id}">
-                                <a href="{g_url}" target="_blank" class="step-card">
+                                <a href="{g_url}" target="_blank" rel="noopener noreferrer" class="step-card" aria-label="{g.get('title', 'מדריך ללא שם')} - נפתח בלשונית חדשה">
                                     <h4>{g.get('title', 'מדריך ללא שם')}</h4>
                                     <p>{g.get('desc', '')}</p>
                                     <span class="step-link">צפה במדריך ←</span>
                                 </a>
-                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-pressed="false" aria-label="סמן כמדריך שנצפה" title="סמן כמדריך שנצפה">✓</button>
                             </div>
                         </div>'''
                         idx += 1
@@ -267,12 +268,12 @@ def generate_ultimate_portal(data, output_file="index.html"):
                     <div class="step-item">
                         <div class="step-marker">{idx}</div>
                         <div class="step-card-wrapper" data-url="{g_id}">
-                            <a href="{g_url}" target="_blank" class="step-card">
+                            <a href="{g_url}" target="_blank" rel="noopener noreferrer" class="step-card" aria-label="{g.get('title', 'מדריך ללא שם')} - נפתח בלשונית חדשה">
                                 <h4>{g.get('title', 'מדריך ללא שם')}</h4>
                                 <p>{g.get('desc', '')}</p>
                                 <span class="step-link">צפה במדריך ←</span>
                             </a>
-                            <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-pressed="false" aria-label="סמן כמדריך שנצפה" title="סמן כמדריך שנצפה">✓</button>
                         </div>
                     </div>'''
 
@@ -284,7 +285,7 @@ def generate_ultimate_portal(data, output_file="index.html"):
                         <h5>{t.get('title', 'כלי')}</h5>
                         <p>{t.get('desc', '')}</p>
                     </div>
-                    <a href="{t.get('url', '#')}" target="_blank" class="tool-btn">פתח כלי</a>
+                    <a href="{t.get('url', '#')}" target="_blank" rel="noopener noreferrer" class="tool-btn" aria-label="{t.get('title', 'כלי')} - נפתח בלשונית חדשה">פתח כלי</a>
                 </div>'''
             
             content_body = f'''
@@ -306,7 +307,7 @@ def generate_ultimate_portal(data, output_file="index.html"):
 
         # הוספת הסקשן ל-HTML הכללי
         sections_html += f'''
-        <section id="{key}" class="content-section {active_class}">
+        <section id="{key}" class="content-section {active_class}" tabindex="-1">
             {content_body}
         </section>'''
 
