@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Knowledge Portal</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="shortcut icon" href="favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&family=Orbitron:wght@600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f0f9ff; --side: #ffffff; --accent: #0ea5e9; --accent-soft: rgba(14, 165, 233, 0.1);
+            --text: #0f172a; --text-dim: #475569; --card: #ffffff; --border: #e0f2fe;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background: var(--bg); color: var(--text); font-family: 'Assistant', sans-serif; display: flex; min-height: 100vh; overflow-x: hidden; }
+
+        nav { width: 280px; background: var(--side); border-left: 1px solid var(--border); height: 100vh; position: fixed; padding: 2rem 1.5rem; display: flex; flex-direction: column; z-index: 1000; transition: 0.3s; }
+        .logo { font-family: 'Orbitron', sans-serif; color: var(--accent); font-size: 1.15rem; margin-bottom: 3rem; text-align: center; }
+        .nav-item { display: flex; align-items: center; padding: 0.8rem 1.2rem; margin-bottom: 0.5rem; border-radius: 12px; cursor: pointer; transition: 0.2s; color: var(--text-dim); font-weight: 600; }
+        .nav-item:hover { background: var(--accent-soft); color: var(--accent); }
+        .nav-item.active { background: var(--accent); color: #ffffff; box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3); }
+        .nav-icon { margin-left: 10px; }
+
+        main { margin-right: 280px; padding: 3rem; width: 100%; transition: 0.3s; }
+        .content-section { display: none; max-width: 1100px; margin: 0 auto; }
+        .content-section.active { display: block; animation: fadeIn 0.4s ease-out; }
+
+        /* Welcome Card */
+        .welcome-container { display: flex; justify-content: center; align-items: center; min-height: 70vh; }
+        .welcome-card { background: white; padding: 3rem; border-radius: 24px; border: 1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: center; width: 100%; }
+        .welcome-card h1 { font-size: 2.2rem; color: var(--accent); margin-bottom: 1.5rem; }
+        .welcome-card p { font-size: 1.15rem; line-height: 1.8; margin-bottom: 1rem; }
+        .contact-links { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+        .contact-links p { margin-bottom: 1rem; font-size: 1rem; color: var(--text-dim); }
+        .contact-links-row { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+        .contact-link-card { display: inline-flex; align-items: center; gap: 0.7rem; padding: 0.95rem 1.2rem; min-width: 190px; border-radius: 16px; text-decoration: none; color: var(--text); background: linear-gradient(135deg, #ffffff 0%, #f8fcff 100%); border: 1px solid var(--border); box-shadow: 0 10px 24px rgba(14, 165, 233, 0.08); transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease; }
+        .contact-link-card:hover { transform: translateY(-3px); border-color: rgba(14, 165, 233, 0.35); box-shadow: 0 16px 30px rgba(14, 165, 233, 0.14); }
+        .contact-link-icon { width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border-radius: 12px; background: var(--accent-soft); color: var(--accent); font-size: 1.15rem; }
+        .contact-link-text { display: flex; flex-direction: column; align-items: flex-start; text-align: right; }
+        .contact-link-title { font-size: 1rem; font-weight: 700; color: var(--text); }
+        .contact-link-subtitle { font-size: 0.85rem; color: var(--text-dim); }
+        .welcome-footer { margin-top: 1.75rem; padding: 1rem 1.2rem; border-radius: 16px; background: linear-gradient(135deg, rgba(14, 165, 233, 0.12) 0%, rgba(255,255,255,0.95) 100%); }
+
+        /* Floating Creators Panel */
+        .floating-creators-btn { position: fixed; top: 22px; left: 22px; z-index: 1200; border: none; border-radius: 999px; background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%); color: #fff; padding: 0.85rem 1.2rem; font-size: 0.92rem; font-weight: 800; cursor: pointer; box-shadow: 0 10px 28px rgba(2, 132, 199, 0.35); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .floating-creators-btn:hover { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(2, 132, 199, 0.4); }
+        .creators-backdrop { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.36); backdrop-filter: blur(2px); z-index: 1190; opacity: 0; pointer-events: none; transition: opacity 0.22s ease; }
+        .creators-backdrop.open { opacity: 1; pointer-events: auto; }
+        .creators-panel { position: fixed; top: 0; left: 0; height: 100vh; width: min(430px, 92vw); background: #fff; border-right: 1px solid var(--border); box-shadow: 0 18px 46px rgba(15, 23, 42, 0.2); z-index: 1210; transform: translateX(-102%); transition: transform 0.25s ease; display: flex; flex-direction: column; }
+        .creators-panel.open { transform: translateX(0); }
+        .creators-panel-header { display: flex; align-items: center; justify-content: space-between; gap: 0.8rem; padding: 1rem 1.1rem; border-bottom: 1px solid var(--border); }
+        .creators-panel-header h3 { font-size: 1.15rem; color: var(--text); }
+        .creators-close { border: none; background: #f1f5f9; color: #334155; width: 34px; height: 34px; border-radius: 10px; cursor: pointer; font-size: 1.2rem; line-height: 1; }
+        .creators-panel-subtitle { padding: 0.8rem 1.1rem 0; color: var(--text-dim); font-size: 0.92rem; line-height: 1.6; }
+        .creators-panel-list { overflow-y: auto; padding: 0.9rem 1rem 1rem; display: grid; gap: 0.8rem; }
+        .creator-panel-card { background: var(--card); border-radius: 14px; border: 1px solid var(--border); padding: 0.9rem; text-decoration: none; color: inherit; transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease; }
+        .creator-panel-card:hover { border-color: rgba(14,165,233,0.45); transform: translateY(-1px); box-shadow: 0 8px 18px rgba(14,165,233,0.12); }
+        .creator-panel-head { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; margin-bottom: 0.45rem; }
+        .creator-name { font-size: 1.15rem; font-weight: 800; color: var(--text); }
+        .creator-platform-badge { font-size: 0.75rem; font-weight: 700; padding: 0.3rem 0.7rem; border-radius: 999px; white-space: nowrap; }
+        .platform-youtube { background: rgba(255,0,0,0.1); color: #b91c1c; border: 1px solid rgba(255,0,0,0.2); }
+        .platform-twitter, .platform-x { background: rgba(0,0,0,0.07); color: #1a1a1a; border: 1px solid rgba(0,0,0,0.15); }
+        .platform-blog, .platform-substack { background: rgba(249,115,22,0.1); color: #c2410c; border: 1px solid rgba(249,115,22,0.25); }
+        .platform-linkedin { background: rgba(14,165,233,0.1); color: #0369a1; border: 1px solid rgba(14,165,233,0.25); }
+        .platform-web { background: rgba(100,116,139,0.1); color: #475569; border: 1px solid rgba(100,116,139,0.2); }
+        .creator-desc { font-size: 0.97rem; color: var(--text-dim); line-height: 1.65; flex: 1; }
+        .creator-link { display: inline-block; font-size: 0.85rem; font-weight: 700; color: var(--accent); margin-top: 0.4rem; text-decoration: none; }
+        .creator-link:hover { text-decoration: underline; }
+
+
+        .section-header { text-align: center; margin-bottom: 3rem; padding: 2rem; background: linear-gradient(135deg, var(--accent-soft) 0%, rgba(255,255,255,0.8) 100%); border-radius: 20px; border: 1px solid var(--border); box-shadow: 0 8px 25px rgba(14, 165, 233, 0.1); }
+        .section-header .badge { display: inline-block; background: var(--accent); color: white; padding: 0.5rem 1.5rem; border-radius: 25px; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 1rem; box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3); }
+        .section-header h2 { font-size: 2.5rem; color: var(--text); margin-bottom: 1rem; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
+        .section-header h2 .emoji { font-size: 2rem; }
+        .section-header p { font-size: 1.2rem; color: var(--text-dim); line-height: 1.6; max-width: 600px; margin: 0 auto; }
+
+        /* Roadmap Layout */
+        .main-layout { display: grid; grid-template-columns: 1.7fr 1fr; gap: 3rem; }
+        .box-title { font-size: 1.2rem; margin-bottom: 1.5rem; color: #334155; border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; }
+        .roadmap-timeline { position: relative; border-right: 3px solid var(--border); padding-right: 2.5rem; }
+        .subject-group { margin-bottom: 2.25rem; padding: 0.2rem 0.4rem 0.1rem 0; border-right: 4px solid #7dd3fc; border-radius: 12px; }
+        .subject-title { font-size: 1.08rem; font-weight: 800; color: #0c4a6e; margin-bottom: 1rem; padding: 0.7rem 1rem; border-radius: 12px; border: 1px solid #bae6fd; background: linear-gradient(135deg, rgba(14,165,233,0.14) 0%, rgba(255,255,255,0.96) 100%); display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+        .subject-level-badge { font-size: 0.75rem; font-weight: 700; padding: 0.32rem 0.55rem; border-radius: 999px; border: 1px solid transparent; letter-spacing: 0.2px; white-space: nowrap; }
+        .subject-group.level-beginner { border-right-color: #34d399; }
+        .subject-group.level-beginner .subject-title { color: #065f46; background: linear-gradient(135deg, rgba(16,185,129,0.12) 0%, rgba(255,255,255,0.96) 100%); border-color: rgba(16,185,129,0.28); }
+        .subject-group.level-beginner .subject-level-badge { background: rgba(16,185,129,0.14); color: #065f46; border-color: rgba(16,185,129,0.32); }
+        .subject-group.level-intermediate { border-right-color: #f59e0b; }
+        .subject-group.level-intermediate .subject-title { color: #92400e; background: linear-gradient(135deg, rgba(245,158,11,0.14) 0%, rgba(255,255,255,0.96) 100%); border-color: rgba(245,158,11,0.3); }
+        .subject-group.level-intermediate .subject-level-badge { background: rgba(245,158,11,0.14); color: #92400e; border-color: rgba(245,158,11,0.35); }
+        .subject-group.level-advanced { border-right-color: #f87171; }
+        .subject-group.level-advanced .subject-title { color: #991b1b; background: linear-gradient(135deg, rgba(248,113,113,0.14) 0%, rgba(255,255,255,0.96) 100%); border-color: rgba(248,113,113,0.33); }
+        .subject-group.level-advanced .subject-level-badge { background: rgba(248,113,113,0.14); color: #991b1b; border-color: rgba(248,113,113,0.35); }
+        .subject-items { padding-top: 0.25rem; }
+        .subject-empty { color: var(--text-dim); font-size: 0.95rem; margin-bottom: 1rem; }
+        .step-item { position: relative; margin-bottom: 2rem; }
+        .step-marker { position: absolute; right: -53px; top: 0; width: 28px; height: 28px; background: #fff; color: var(--accent); font-size: 0.9rem; font-weight: bold; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 3.5px solid var(--accent); }
+        .step-card-wrapper { position: relative; }
+        .step-card { background: var(--card); padding: 1.5rem; border-radius: 16px; border: 1px solid var(--border); display: block; text-decoration: none; color: inherit; transition: 0.3s; padding-left: 3rem; }
+        .step-card:hover { transform: translateX(-8px); border-color: var(--accent); }
+        .step-card-wrapper.seen .step-card { border-color: #34d399; background: linear-gradient(135deg, rgba(16,185,129,0.06) 0%, #ffffff 100%); }
+        .seen-btn { position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%); width: 28px; height: 28px; border-radius: 50%; border: 2px solid #cbd5e1; background: #fff; color: #94a3b8; font-size: 0.85rem; font-weight: 900; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.18s ease; z-index: 1; }
+        .seen-btn:hover { border-color: #34d399; color: #34d399; }
+        .step-card-wrapper.seen .seen-btn { border-color: #10b981; background: #10b981; color: #fff; }
+        .tool-card { background: var(--card); padding: 1.2rem; border-radius: 12px; border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .tool-btn { background: var(--accent-soft); color: var(--accent); padding: 6px 14px; border-radius: 8px; text-decoration: none; font-size: 0.8rem; font-weight: 700; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            nav { width: 100%; height: auto; position: sticky; top: 0; padding: 1rem; border-left: none; border-bottom: 1px solid var(--border); flex-direction: row; overflow-x: auto; }
+            .logo { display: none; }
+            .nav-item { white-space: nowrap; padding: 0.5rem 1rem; }
+            main { margin-right: 0; padding: 1.5rem; }
+            .main-layout { grid-template-columns: 1fr; }
+            .step-marker { display: none; }
+            .roadmap-timeline { border-right: none; padding-right: 0; }
+            .contact-links-row { flex-direction: column; }
+            .contact-link-card { width: 100%; min-width: 0; justify-content: flex-start; }
+            .subject-title { flex-direction: column; align-items: flex-start; }
+            .floating-creators-btn { top: 14px; left: 14px; }
+            .creators-panel { width: 92vw; }
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">AI_ULTIMATE</div>
+        <div class="nav-links">
+        <div class="nav-item active" onclick="showSection('home', this)">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-text">דף הבית</span>
+        </div>
+        <div class="nav-item " onclick="showSection('ai_foundations', this)">
+            <span class="nav-icon">🧠</span>
+            <span class="nav-text">Neural Architectures Basics</span>
+        </div>
+        <div class="nav-item " onclick="showSection('ai_coding_tools', this)">
+            <span class="nav-icon">💻</span>
+            <span class="nav-text">AI Code Editors & Assistants</span>
+        </div>
+        <div class="nav-item " onclick="showSection('machine_learning_algorithms', this)">
+            <span class="nav-icon">📊</span>
+            <span class="nav-text">Machine Learning Algorithms</span>
+        </div></div>
+    </nav>
+    <main>
+        
+        <section id="home" class="content-section active">
+            
+            <div class="welcome-container">
+                <div class="welcome-card">
+                    <h1>AI Roadmap: מהבסיס ועד לקצה הטכנולוגיה 🚀</h1>
+                    <p>ריכזתי כאן את מסלול הלמידה האישי שלי בעולם הבינה המלאכותית. במקום להתפזר, אספתי את המדריכים הכי איכותיים שעזרו לי לחבר את הנקודות – ממתמטיקה בסיסית ועד ל-Transformers.</p>
+                    <p>זה לא קורס רשמי, אלא פשוט ריכוז של מקורות שחברים ביקשו ממני לשתף כדי להתחיל ברגל ימין. מוזמנים להשתמש בזה כנקודת זינוק.</p>
+                    
+                    <div class="contact-links">
+                        <p><strong>בואו נשתמע:</strong></p>
+                        <div class="contact-links-row">
+                            <a href="https://www.linkedin.com/in/noamiman/" target="_blank" class="contact-link-card">
+                                <span class="contact-link-icon">in</span>
+                                <span class="contact-link-text">
+                                    <span class="contact-link-title">LinkedIn</span>
+                                    <span class="contact-link-subtitle">תתחברו אליי</span>
+                                </span>
+                            </a>
+                            <a href="https://github.com/noamiman" target="_blank" class="contact-link-card">
+                                <span class="contact-link-icon">&lt;/&gt;</span>
+                                <span class="contact-link-text">
+                                    <span class="contact-link-title">GitHub</span>
+                                    <span class="contact-link-subtitle">לפרויקטים שלי</span>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="welcome-footer">
+                        <p>💡 <strong>איך להשתמש באתר?</strong> בחרו נושא מהתפריט בצד והתחילו ללמוד!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="ai_foundations" class="content-section ">
+            
+            <div class="section-header">
+                <span class="badge">מסלול למידה</span>
+                <h2><span class="emoji">🧠</span> Neural Architectures Basics</h2>
+                <p>הבסיס העמוק של בינה מלאכותית: מרשתות נוירונים בסיסיות, דרך ארכיטקטורות מתקדמות כמו CNN ו-Transformers ועד מודלים גנרטיביים.</p>
+            </div>
+            <div class="main-layout">
+                <div class="roadmap-box">
+                    <h3 class="box-title">🗺️ שלבי הלמידה</h3>
+                    <div class="roadmap-timeline">
+                    <div class="subject-group level-beginner">
+                        <h4 class="subject-title">
+                            <span>Neural Network Foundations</span>
+                            <span class="subject-level-badge">Beginner</span>
+                        </h4>
+                        <div class="subject-items">
+                        <div class="step-item">
+                            <div class="step-marker">1</div>
+                            <div class="step-card-wrapper" data-url="https://www.youtube.com/watch?v=aircAruvnKk&t=71s">
+                                <a href="https://www.youtube.com/watch?v=aircAruvnKk&t=71s" target="_blank" class="step-card">
+                                    <h4>1. What is a Neural Network? (פרק 1)</h4>
+                                    <p>מבוא ויזואלי מקיף מאת 3Blue1Brown המסביר מהן רשתות נוירונים ואיך הן בנויות בשכבות.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">2</div>
+                            <div class="step-card-wrapper" data-url="https://www.youtube.com/watch?v=IHZwWFHWa-w&t=833s">
+                                <a href="https://www.youtube.com/watch?v=IHZwWFHWa-w&t=833s" target="_blank" class="step-card">
+                                    <h4>2. Gradient Descent (פרק 2)</h4>
+                                    <p>הסבר על האלגוריתם שמאפשר לרשתות ללמוד על ידי מזעור פונקציית ההפסד.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">3</div>
+                            <div class="step-card-wrapper" data-url="https://www.youtube.com/watch?v=Ilg3gGewQ5U&t=2s">
+                                <a href="https://www.youtube.com/watch?v=Ilg3gGewQ5U&t=2s" target="_blank" class="step-card">
+                                    <h4>3. Backpropagation (פרק 3)</h4>
+                                    <p>צלילה למתמטיקה שמאחורי עדכון המשקולות ברשת - הלב של ה-Deep Learning.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">4</div>
+                            <div class="step-card-wrapper" data-url="https://www.youtube.com/watch?v=tIeHLnjs5U8">
+                                <a href="https://www.youtube.com/watch?v=tIeHLnjs5U8" target="_blank" class="step-card">
+                                    <h4>4. Backpropagation Calculus (פרק 4)</h4>
+                                    <p>המשך והעמקה בחישובים המתמטיים (Calculus) המאפשרים את פעולת ה-Backpropagation.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            </div>
+                        </div></div>
+                    </div>
+                    <div class="subject-group level-intermediate">
+                        <h4 class="subject-title">
+                            <span>Computer Vision Architectures</span>
+                            <span class="subject-level-badge">Intermediate</span>
+                        </h4>
+                        <div class="subject-items">
+                        <div class="step-item">
+                            <div class="step-marker">5</div>
+                            <div class="step-card-wrapper" data-url="https://www.youtube.com/watch?v=KuXjwB4LzSA&t=1s">
+                                <a href="https://www.youtube.com/watch?v=KuXjwB4LzSA&t=1s" target="_blank" class="step-card">
+                                    <h4>5. Convolutional Neural Networks (CNN)</h4>
+                                    <p>הסבר ויזואלי מרהיב על הארכיטקטורה ששינתה את עולם הראייה הממוחשבת.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">6</div>
+                            <div class="step-card-wrapper" data-url="https://youtu.be/YRhxdVk_sIs?si=fXIzj-OaJty-4Dmt">
+                                <a href="https://youtu.be/YRhxdVk_sIs?si=fXIzj-OaJty-4Dmt" target="_blank" class="step-card">
+                                    <h4>6. CNN - מדריך קצר וספציפי</h4>
+                                    <p>סקירה ממוקדת על אופן הפעולה של שכבות קונבולוציה וסינון מאפיינים בתמונה.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">7</div>
+                            <div class="step-card-wrapper" data-url="https://youtu.be/Rdpbnd0pCiI?si=u92QFUP2CAqL8GXi">
+                                <a href="https://youtu.be/Rdpbnd0pCiI?si=u92QFUP2CAqL8GXi" target="_blank" class="step-card">
+                                    <h4>7. AutoEncoders - מבוא</h4>
+                                    <p>למידה לא מונחית (Unsupervised) לצורך דחיסת נתונים ושחזורם.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">8</div>
+                            <div class="step-card-wrapper" data-url="https://youtu.be/hZ4a4NgM3u0?si=ioZ2_KhLMSK3mmXR">
+                                <a href="https://youtu.be/hZ4a4NgM3u0?si=ioZ2_KhLMSK3mmXR" target="_blank" class="step-card">
+                                    <h4>8. AutoEncoders - העמקה</h4>
+                                    <p>שימושים מתקדמים ב-AutoEncoders להפחתת מימדים וניקוי רעשים.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">9</div>
+                            <div class="step-card-wrapper" data-url="https://youtu.be/Nq3auVtvd9Q?si=MN-JWRvpGjF03eT-">
+                                <a href="https://youtu.be/Nq3auVtvd9Q?si=MN-JWRvpGjF03eT-" target="_blank" class="step-card">
+                                    <h4>9. AlexNet Architecture</h4>
+                                    <p>ניתוח הארכיטקטורה ההיסטורית שהוכיחה את העליונות של Deep Learning ב-ImageNet.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">10</div>
+                            <div class="step-card-wrapper" data-url="https://youtu.be/AsNTP8Kwu80?si=6PoEWJ_QYDzBliWF">
+                                <a href="https://youtu.be/AsNTP8Kwu80?si=6PoEWJ_QYDzBliWF" target="_blank" class="step-card">
+                                    <h4>10. Recurrent Neural Networks (RNN)</h4>
+                                    <p>מבוא לרשתות עם זיכרון המיועדות לניתוח סדרות של נתונים (כמו טקסט או וידאו).</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">11</div>
+                            <div class="step-card-wrapper" data-url="https://youtu.be/GWt6Fu05voI?si=Qo3P-pOLng0q6EWx">
+                                <a href="https://youtu.be/GWt6Fu05voI?si=Qo3P-pOLng0q6EWx" target="_blank" class="step-card">
+                                    <h4>11. ResNet - Residual Networks</h4>
+                                    <p>כיצד 'קיצורי דרך' (Skip Connections) מאפשרים לאמן רשתות עמוקות מאוד ללא דעיכת גרדיאנט.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            </div>
+                        </div></div>
+                    </div>
+                    <div class="subject-group level-intermediate">
+                        <h4 class="subject-title">
+                            <span>Generative Models</span>
+                            <span class="subject-level-badge">Intermediate</span>
+                        </h4>
+                        <div class="subject-items">
+                        <div class="step-item">
+                            <div class="step-marker">12</div>
+                            <div class="step-card-wrapper" data-url="https://youtu.be/TpMIssRdhco?si=WIpvRGf2NTj7tDYF">
+                                <a href="https://youtu.be/TpMIssRdhco?si=WIpvRGf2NTj7tDYF" target="_blank" class="step-card">
+                                    <h4>12. GAN - הסבר תיאורטי</h4>
+                                    <p>רשתות אדברסריות יוצרות (Generative Adversarial Networks) והקונספט של 'הזייפן מול השוטר'.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">13</div>
+                            <div class="step-card-wrapper" data-url="https://youtu.be/eyxmSmjmNS0?si=si6DtAxHauR0IbEt">
+                                <a href="https://youtu.be/eyxmSmjmNS0?si=si6DtAxHauR0IbEt" target="_blank" class="step-card">
+                                    <h4>13. GAN - ניתוח דף המחקר</h4>
+                                    <p>צלילה למאמר המקורי של איאן גודפלו והבנת המבנה המתמטי של GAN.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">14</div>
+                            <div class="step-card-wrapper" data-url="https://youtu.be/_qB4B6ttXk8?si=DW8FE-1GfXPvw-BI">
+                                <a href="https://youtu.be/_qB4B6ttXk8?si=DW8FE-1GfXPvw-BI" target="_blank" class="step-card">
+                                    <h4>14. GAN - הסבר משלים</h4>
+                                    <p>דוגמאות נוספות וטכניקות לאימון יציב של מודלים גנרטיביים.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">15</div>
+                            <div class="step-card-wrapper" data-url="https://youtu.be/yexR53My2O4?si=IjCv0ynS5qzIs3BJ">
+                                <a href="https://youtu.be/yexR53My2O4?si=IjCv0ynS5qzIs3BJ" target="_blank" class="step-card">
+                                    <h4>15. Word2Vec</h4>
+                                    <p>איך הופכים מילים לוקטורים מתמטיים שמשמרים משמעות סמנטית.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            </div>
+                        </div></div>
+                    </div>
+                    <div class="subject-group level-advanced">
+                        <h4 class="subject-title">
+                            <span>Sequence Models and Embeddings</span>
+                            <span class="subject-level-badge">Advanced</span>
+                        </h4>
+                        <div class="subject-items">
+                        <div class="step-item">
+                            <div class="step-marker">16</div>
+                            <div class="step-card-wrapper" data-url="https://youtu.be/YCzL96nL7j0?si=GLzgumU2fwZU6F2f">
+                                <a href="https://youtu.be/YCzL96nL7j0?si=GLzgumU2fwZU6F2f" target="_blank" class="step-card">
+                                    <h4>16. LSTM - Long Short-Term Memory</h4>
+                                    <p>פתרון בעיית הזיכרון לטווח ארוך ברשתות RNN בעזרת מנגנוני Gating.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">17</div>
+                            <div class="step-card-wrapper" data-url="https://youtu.be/QciIcRxJvsM?si=enx-amWOBkbgOd6c">
+                                <a href="https://youtu.be/QciIcRxJvsM?si=enx-amWOBkbgOd6c" target="_blank" class="step-card">
+                                    <h4>17. LSTM - הסבר נוסף</h4>
+                                    <p>פירוק המבנה הפנימי של תא LSTM והבנה איך מידע נשמר או נשכח.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">18</div>
+                            <div class="step-card-wrapper" data-url="https://youtu.be/8HyCNIVRbSU?si=GNOs8r6DTbGEfuz8">
+                                <a href="https://youtu.be/8HyCNIVRbSU?si=GNOs8r6DTbGEfuz8" target="_blank" class="step-card">
+                                    <h4>18. LSTM - הרחבה טכנית</h4>
+                                    <p>העמקה נוספת במימוש וביצועים של LSTM במשימות רצף מורכבות.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">19</div>
+                            <div class="step-card-wrapper" data-url="https://youtu.be/iDulhoQ2pro?si=7Qiltm1d4kixZVeI">
+                                <a href="https://youtu.be/iDulhoQ2pro?si=7Qiltm1d4kixZVeI" target="_blank" class="step-card">
+                                    <h4>19. Transformers - דף המחקר</h4>
+                                    <p>ניתוח המאמר 'Attention Is All You Need' - המהפכה שמאחורי GPT ומודלי שפה מודרניים.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            </div>
+                        </div></div>
+                    </div>
+                    <div class="subject-group level-advanced">
+                        <h4 class="subject-title">
+                            <span>Transformers and Modern LLM Concepts</span>
+                            <span class="subject-level-badge">Advanced</span>
+                        </h4>
+                        <div class="subject-items">
+                        <div class="step-item">
+                            <div class="step-marker">20</div>
+                            <div class="step-card-wrapper" data-url="https://huggingface.co/learn/llm-course/chapter1/1">
+                                <a href="https://huggingface.co/learn/llm-course/chapter1/1" target="_blank" class="step-card">
+                                    <h4>20. Hugging Face Course - Transformers</h4>
+                                    <p>קורס פרקטי המסביר את עולם ה-NLP המודרני ושימוש בספריית Hugging Face.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">21</div>
+                            <div class="step-card-wrapper" data-url="https://www.youtube.com/watch?v=TrdevFK_am4">
+                                <a href="https://www.youtube.com/watch?v=TrdevFK_am4" target="_blank" class="step-card">
+                                    <h4>21. Vision Transformers (ViT)</h4>
+                                    <p>כיצד ארכיטקטורת ה-Transformer מיושמת על תמונות ומחליפה במקרים מסוימים את ה-CNN.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">22</div>
+                            <div class="step-card-wrapper" data-url="https://youtu.be/V8r__fXx7tU?si=Ym9Fszmm9RatNcIe">
+                                <a href="https://youtu.be/V8r__fXx7tU?si=Ym9Fszmm9RatNcIe" target="_blank" class="step-card">
+                                    <h4>22. RoPE - Rotary Positional Embedding</h4>
+                                    <p>הסבר על שיטה מתקדמת לקידוד מיקום ב-Transformers, הנפוצה במודלים כמו Llama.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">23</div>
+                            <div class="step-card-wrapper" data-url="https://www.youtube.com/watch?v=0QQlYR1r6pQ">
+                                <a href="https://www.youtube.com/watch?v=0QQlYR1r6pQ" target="_blank" class="step-card">
+                                    <h4>23. MoE - Mixture of Experts</h4>
+                                    <p>איך לאמן מודלי ענק ביעילות על ידי הפעלת רק חלק מהפרמטרים בכל פעם.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            </div>
+                        </div></div>
+                    </div></div>
+                </div>
+                <div class="tools-box">
+                    <h3 class="box-title">🛠️ כלים שימושיים</h3>
+                    <div class="tools-list">
+                <div class="tool-card">
+                    <div class="tool-info">
+                        <h5>Hugging Face</h5>
+                        <p>הפלטפורמה המרכזית למודלי AI. כוללת אלפי מודלים מוכנים, דאטה-סטים למחקר ומדריכים מעמיקים להעשרת הידע.</p>
+                    </div>
+                    <a href="https://huggingface.co/" target="_blank" class="tool-btn">פתח כלי</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-info">
+                        <h5>Neural Network Playground</h5>
+                        <p>סימולטור אינטראקטיבי המאפשר להבין ויזואלית איך רשתות נוירונים לומדות, על ידי שינוי פרמטרים בזמן אמת.</p>
+                    </div>
+                    <a href="https://playground.tensorflow.org/" target="_blank" class="tool-btn">פתח כלי</a>
+                </div></div>
+                </div>
+            </div>
+        </section>
+        <section id="ai_coding_tools" class="content-section ">
+            
+            <div class="section-header">
+                <span class="badge">מסלול למידה</span>
+                <h2><span class="emoji">💻</span> AI Code Editors & Assistants</h2>
+                <p>הכלים שאני ממליץ עליהם לקידוד עם AI — מעוזרי IDE ועד סוכנים אוטונומיים שכותבים קוד בשבילך.</p>
+            </div>
+            <div class="main-layout">
+                <div class="roadmap-box">
+                    <h3 class="box-title">🗺️ שלבי הלמידה</h3>
+                    <div class="roadmap-timeline">
+                    <div class="subject-group level-intermediate">
+                        <h4 class="subject-title">
+                            <span>AI Code Assistants</span>
+                            <span class="subject-level-badge">Intermediate</span>
+                        </h4>
+                        <div class="subject-items">
+                        <div class="step-item">
+                            <div class="step-marker">1</div>
+                            <div class="step-card-wrapper" data-url="https://www.youtube.com/watch?v=SJqGYwRq0uc">
+                                <a href="https://www.youtube.com/watch?v=SJqGYwRq0uc" target="_blank" class="step-card">
+                                    <h4>GitHub Copilot</h4>
+                                    <p>עוזר הקוד הנפוץ ביותר בתעשייה. משולב ישירות ב-VSCode ו-JetBrains — משלים קוד, מסביר שגיאות וכותב פונקציות שלמות תוך כדי הקלדה.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">2</div>
+                            <div class="step-card-wrapper" data-url="https://youtu.be/Rgz6mX93C4Y?si=yXRMldig7h2IGyN3">
+                                <a href="https://youtu.be/Rgz6mX93C4Y?si=yXRMldig7h2IGyN3" target="_blank" class="step-card">
+                                    <h4>Cursor</h4>
+                                    <p>עורך קוד מבוסס VSCode עם AI עמוק שמבין את כל ה-codebase. מאפשר לערוך קבצים שלמים בפקודה אחת ולנהל שיחה ישירה עם הקוד.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">3</div>
+                            <div class="step-card-wrapper" data-url="https://www.youtube.com/watch?v=eMZmDH3T2bY">
+                                <a href="https://www.youtube.com/watch?v=eMZmDH3T2bY" target="_blank" class="step-card">
+                                    <h4>Claude Code (Anthropic)</h4>
+                                    <p>סוכן קוד אוטונומי שעובד ישירות מהטרמינל. מבין את כל הפרויקט, כותב תכונות, מתקן באגים ומריץ בדיקות — ללא צורך ב-IDE.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">4</div>
+                            <div class="step-card-wrapper" data-url="https://youtu.be/f33Fw6NiPpw?si=Q-UaggQBXlHIb3T_">
+                                <a href="https://youtu.be/f33Fw6NiPpw?si=Q-UaggQBXlHIb3T_" target="_blank" class="step-card">
+                                    <h4>Cline (VSCode Extension)</h4>
+                                    <p>תוסף VSCode קוד-פתוח שמאפשר לכל מודל (Claude, GPT, Gemini) לפעול כסוכן אוטונומי: יוצר קבצים, מריץ פקודות ומנפה שגיאות בזמן אמת.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            </div>
+                        </div></div>
+                    </div>
+                    <div class="subject-group level-beginner">
+                        <h4 class="subject-title">
+                            <span>Web App Builders</span>
+                            <span class="subject-level-badge">Beginner</span>
+                        </h4>
+                        <div class="subject-items">
+                        <div class="step-item">
+                            <div class="step-marker">5</div>
+                            <div class="step-card-wrapper" data-url="https://base44.com/">
+                                <a href="https://base44.com/" target="_blank" class="step-card">
+                                    <h4>Base44</h4>
+                                    <p>פלטפורמה ישראלית לבניית אפליקציות web מלאות בעזרת AI. מתארים בשפה טבעית מה רוצים — והיא בונה את כל הממשק, הלוגיקה והדאטה.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">6</div>
+                            <div class="step-card-wrapper" data-url="https://lovable.dev/">
+                                <a href="https://lovable.dev/" target="_blank" class="step-card">
+                                    <h4>Lovable</h4>
+                                    <p>כלי web לבנייה מהירה של אפליקציות React מלאות על ידי תיאור טקסטואלי בלבד. מייצר קוד נקי, מחובר ל-Supabase ומאפשר deploy מיידי.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            </div>
+                        </div></div>
+                    </div></div>
+                </div>
+                <div class="tools-box">
+                    <h3 class="box-title">🛠️ כלים שימושיים</h3>
+                    <div class="tools-list">
+                <div class="tool-card">
+                    <div class="tool-info">
+                        <h5>VSCode</h5>
+                        <p>עורך הקוד הפופולרי ביותר, עם תמיכה בכל תוספי ה-AI המובילים כמו Copilot ו-Cline.</p>
+                    </div>
+                    <a href="https://code.visualstudio.com/" target="_blank" class="tool-btn">פתח כלי</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-info">
+                        <h5>PyCharm</h5>
+                        <p>סביבת פיתוח מקצועית ל-Python עם יכולות AI מובנות ותמיכה בתוספים חיצוניים.</p>
+                    </div>
+                    <a href="https://www.jetbrains.com/pycharm/" target="_blank" class="tool-btn">פתח כלי</a>
+                </div></div>
+                </div>
+            </div>
+        </section>
+        <section id="machine_learning_algorithms" class="content-section ">
+            
+            <div class="section-header">
+                <span class="badge">מסלול למידה</span>
+                <h2><span class="emoji">📊</span> Machine Learning Algorithms</h2>
+                <p>מפת דרכים לאלגוריתמים קלאסיים ב-ML: מהבסיס של רגרסיה וסיווג ועד מודלים מתקדמים של Boosting ואנסמבלים.</p>
+            </div>
+            <div class="main-layout">
+                <div class="roadmap-box">
+                    <h3 class="box-title">🗺️ שלבי הלמידה</h3>
+                    <div class="roadmap-timeline">
+                    <div class="subject-group level-beginner">
+                        <h4 class="subject-title">
+                            <span>ML Foundations (Supervised Basics)</span>
+                            <span class="subject-level-badge">Beginner</span>
+                        </h4>
+                        <div class="subject-items">
+                        <div class="step-item">
+                            <div class="step-marker">1</div>
+                            <div class="step-card-wrapper" data-url="https://youtu.be/VmbA0pi2cRQ?si=QMuMY4wrHpqFLxvf">
+                                <a href="https://youtu.be/VmbA0pi2cRQ?si=QMuMY4wrHpqFLxvf" target="_blank" class="step-card">
+                                    <h4>1. Linear Regression</h4>
+                                    <p>האלגוריתם הבסיסי לרגרסיה וחיזוי ערכים רציפים, כולל אינטואיציה והטמעה בסיסית.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">2</div>
+                            <div class="step-card-wrapper" data-url="https://youtu.be/yIYKR4sgzI8?si=p9an_cAy63pOEO0G">
+                                <a href="https://youtu.be/yIYKR4sgzI8?si=p9an_cAy63pOEO0G" target="_blank" class="step-card">
+                                    <h4>2. Logistic Regression (Classification)</h4>
+                                    <p>מודל סיווג בסיסי ועוצמתי לבעיות בינאריות ורב-מחלקתיות.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">3</div>
+                            <div class="step-card-wrapper" data-url="https://www.youtube.com/watch?v=HVXime0nQeI">
+                                <a href="https://www.youtube.com/watch?v=HVXime0nQeI" target="_blank" class="step-card">
+                                    <h4>3. k-Nearest Neighbors (kNN)</h4>
+                                    <p>סיווג/רגרסיה לפי השכנים הקרובים ביותר במרחב הפיצ'רים.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">4</div>
+                            <div class="step-card-wrapper" data-url="https://youtu.be/lJGHZO0rqs0?si=tTDZ6qJuNCsvlB0w">
+                                <a href="https://youtu.be/lJGHZO0rqs0?si=tTDZ6qJuNCsvlB0w" target="_blank" class="step-card">
+                                    <h4>4. Naive Bayes</h4>
+                                    <p>משפחת מודלים הסתברותיים מהירים, מעולים במיוחד לבעיות טקסט וסיווג בסיסי.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            </div>
+                        </div></div>
+                    </div>
+                    <div class="subject-group level-intermediate">
+                        <h4 class="subject-title">
+                            <span>Trees, Ensembles and Core Classification</span>
+                            <span class="subject-level-badge">Intermediate</span>
+                        </h4>
+                        <div class="subject-items">
+                        <div class="step-item">
+                            <div class="step-marker">5</div>
+                            <div class="step-card-wrapper" data-url="https://www.youtube.com/watch?v=7VeUPuFGJHk">
+                                <a href="https://www.youtube.com/watch?v=7VeUPuFGJHk" target="_blank" class="step-card">
+                                    <h4>5. Decision Trees</h4>
+                                    <p>עצים להסבריות גבוהה ולפתרון בעיות סיווג ורגרסיה.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">6</div>
+                            <div class="step-card-wrapper" data-url="https://www.youtube.com/watch?v=J4Wdy0Wc_xQ">
+                                <a href="https://www.youtube.com/watch?v=J4Wdy0Wc_xQ" target="_blank" class="step-card">
+                                    <h4>6. Random Forest</h4>
+                                    <p>אנסמבל של עצים לשיפור יציבות וביצועים ביחס לעץ בודד.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">7</div>
+                            <div class="step-card-wrapper" data-url="https://www.youtube.com/watch?v=u4IxOk2ijSs">
+                                <a href="https://www.youtube.com/watch?v=u4IxOk2ijSs" target="_blank" class="step-card">
+                                    <h4>Gini Impurity</h4>
+                                    <p>הסבר מעמיק על מדד ה-Gini המשמש לבניית עצי החלטה ומדידת רמת הפיצול של הנתונים.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">8</div>
+                            <div class="step-card-wrapper" data-url="https://youtu.be/ny1iZ5A8ilA?si=PfmS806JzW6ZntCF">
+                                <a href="https://youtu.be/ny1iZ5A8ilA?si=PfmS806JzW6ZntCF" target="_blank" class="step-card">
+                                    <h4>7. Support Vector Machines (SVM)</h4>
+                                    <p>אלגוריתם סיווג חזק במיוחד במרחבים מורכבים, עם שימוש ב-Kernels.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">9</div>
+                            <div class="step-card-wrapper" data-url="https://youtu.be/3CC4N4z3GJc?si=QMuMY4wrHpqFLxvf">
+                                <a href="https://youtu.be/3CC4N4z3GJc?si=QMuMY4wrHpqFLxvf" target="_blank" class="step-card">
+                                    <h4>8. Gradient Boosting</h4>
+                                    <p>בוסטינג קלאסי לבניית מודל חזק כרצף של לומדים חלשים. מי שרוצה להעמיק יכול להמשיך לפרקים 2, 3 ו-4 של הסרטון הזה.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            </div>
+                        </div></div>
+                    </div>
+                    <div class="subject-group level-intermediate">
+                        <h4 class="subject-title">
+                            <span>Unsupervised Learning and Clustering</span>
+                            <span class="subject-level-badge">Intermediate</span>
+                        </h4>
+                        <div class="subject-items">
+                        <div class="step-item">
+                            <div class="step-marker">10</div>
+                            <div class="step-card-wrapper" data-url="https://www.youtube.com/watch?v=4b5d3muPQmA">
+                                <a href="https://www.youtube.com/watch?v=4b5d3muPQmA" target="_blank" class="step-card">
+                                    <h4>9. k-Means Clustering</h4>
+                                    <p>אלגוריתם קלאסטרינג בסיסי לקיבוץ דגימות לקבוצות לפי דמיון.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">11</div>
+                            <div class="step-card-wrapper" data-url="https://youtu.be/_A9Tq6mGtLI?si=89hcbw1_9-D-gIZl">
+                                <a href="https://youtu.be/_A9Tq6mGtLI?si=89hcbw1_9-D-gIZl" target="_blank" class="step-card">
+                                    <h4>10. DBSCAN</h4>
+                                    <p>קלאסטרינג מבוסס צפיפות שמזהה גם רעשים וחריגים.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">12</div>
+                            <div class="step-card-wrapper" data-url="https://youtu.be/8QCBl-xdeZI?si=6fMHgnqaqNMGEsjt">
+                                <a href="https://youtu.be/8QCBl-xdeZI?si=6fMHgnqaqNMGEsjt" target="_blank" class="step-card">
+                                    <h4>11. Hierarchical Clustering</h4>
+                                    <p>קלאסטרינג היררכי לבניית מבנה עץ של קבוצות נתונים.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">13</div>
+                            <div class="step-card-wrapper" data-url="https://www.youtube.com/watch?v=FgakZw6K1QQ">
+                                <a href="https://www.youtube.com/watch?v=FgakZw6K1QQ" target="_blank" class="step-card">
+                                    <h4>12. Principal Component Analysis (PCA)</h4>
+                                    <p>הפחתת מימדים ושיפור הבנה/ביצועים של דאטה מרובה פיצ'רים.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            </div>
+                        </div></div>
+                    </div>
+                    <div class="subject-group level-advanced">
+                        <h4 class="subject-title">
+                            <span>Advanced Boosting and Modern Tabular Models</span>
+                            <span class="subject-level-badge">Advanced</span>
+                        </h4>
+                        <div class="subject-items">
+                        <div class="step-item">
+                            <div class="step-marker">14</div>
+                            <div class="step-card-wrapper" data-url="https://www.youtube.com/watch?v=OtD8wVaFm6E">
+                                <a href="https://www.youtube.com/watch?v=OtD8wVaFm6E" target="_blank" class="step-card">
+                                    <h4>13. XGBoost</h4>
+                                    <p>אחת מספריות ה-Gradient Boosting החזקות ביותר לנתונים טבלאיים. מי שרוצה להעמיק יכול להמשיך לפרקים 2, 3 ו-4 של הסרטון הזה.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">15</div>
+                            <div class="step-card-wrapper" data-url="https://www.youtube.com/watch?v=KXOTSkPL2X4">
+                                <a href="https://www.youtube.com/watch?v=KXOTSkPL2X4" target="_blank" class="step-card">
+                                    <h4>14. CatBoost</h4>
+                                    <p>בוסטינג מתקדם עם תמיכה חזקה בקטגוריות ו-preprocessing חכם. מי שרוצה להעמיק יכול להמשיך לפרקים 2, 3 ו-4 של הסרטון הזה.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">16</div>
+                            <div class="step-card-wrapper" data-url="https://youtu.be/n_ZMQj09S6w?si=DUnZpxEPL0qgJvwP">
+                                <a href="https://youtu.be/n_ZMQj09S6w?si=DUnZpxEPL0qgJvwP" target="_blank" class="step-card">
+                                    <h4>15. LightGBM</h4>
+                                    <p>בוסטינג מהיר ויעיל במיוחד לסטים גדולים וביצועים גבוהים.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-label="סמן כנצפה" title="סמן כנצפה">✓</button>
+                            </div>
+                        </div></div>
+                    </div></div>
+                </div>
+                <div class="tools-box">
+                    <h3 class="box-title">🛠️ כלים שימושיים</h3>
+                    <div class="tools-list">
+                <div class="tool-card">
+                    <div class="tool-info">
+                        <h5>Scikit-learn</h5>
+                        <p>הדוקומנטציה הרשמית והספרייה המרכזית ל-ML קלאסי ב-Python: אלגוריתמים, דוגמאות, ו-API מלא.</p>
+                    </div>
+                    <a href="https://scikit-learn.org/stable/" target="_blank" class="tool-btn">פתח כלי</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-info">
+                        <h5>Pandas</h5>
+                        <p>הכלי המרכזי לניתוח ועיבוד נתונים (Data Manipulation). מאפשר עבודה נוחה עם טבלאות (DataFrames), סינון נתונים וטיפול במידע חסר.</p>
+                    </div>
+                    <a href="https://pandas.pydata.org/docs/" target="_blank" class="tool-btn">פתח כלי</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-info">
+                        <h5>Matplotlib</h5>
+                        <p>ספריית הבסיס ליצירת גרפים והדמיות נתונים ב-Python. מאפשרת שליטה מלאה על כל אלמנט בגרף ויצירת תרשימים דו-ממדיים.</p>
+                    </div>
+                    <a href="https://matplotlib.org/stable/index.html" target="_blank" class="tool-btn">פתח כלי</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-info">
+                        <h5>Seaborn</h5>
+                        <p>ספריית הדמיית נתונים המבוססת על Matplotlib ומספקת ממשק ברמה גבוהה יותר ליצירת גרפים סטטיסטיים מעוצבים ומרשימים בקלות.</p>
+                    </div>
+                    <a href="https://seaborn.pydata.org/" target="_blank" class="tool-btn">פתח כלי</a>
+                </div></div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+        <button type="button" class="floating-creators-btn" onclick="toggleCreatorsPanel()" aria-controls="creatorsPanel" aria-expanded="false">
+            ⭐ יוצרים מומלצים
+        </button>
+        <div id="creatorsBackdrop" class="creators-backdrop" onclick="closeCreatorsPanel()"></div>
+        <aside id="creatorsPanel" class="creators-panel" aria-hidden="true">
+            <div class="creators-panel-header">
+                <h3>יוצרים מומלצים</h3>
+                <button type="button" class="creators-close" onclick="closeCreatorsPanel()" aria-label="סגור">×</button>
+            </div>
+            <p class="creators-panel-subtitle">יוצרי תוכן ומחברים שאני עוקב אחריהם ומרגיש שמעשירים אותי בתחום ה-AI</p>
+            <div class="creators-panel-list">
+            <a href="https://www.youtube.com/@3blue1brown" target="_blank" class="creator-panel-card">
+                <div class="creator-panel-head">
+                    <span class="creator-name">3Blue1Brown</span>
+                    <span class="creator-platform-badge platform-youtube">YouTube</span>
+                </div>
+                <p class="creator-desc">ויזואליזציות מדהימות של מתמטיקה ו-AI. הסדרה Neural Networks שלו היא אחת הדרכים הכי טובות להבין את הבסיס.</p>
+                <span class="creator-link">בקרו בערוץ →</span>
+            </a>
+            <a href="https://www.youtube.com/@TwoMinutePapers" target="_blank" class="creator-panel-card">
+                <div class="creator-panel-head">
+                    <span class="creator-name">Two Minute Papers</span>
+                    <span class="creator-platform-badge platform-youtube">YouTube</span>
+                </div>
+                <p class="creator-desc">סקירות קצרות ומרתקות של מחקרי AI חדשים. הדרך הכי מהירה להישאר מעודכן בקצה הטכנולוגיה.</p>
+                <span class="creator-link">בקרו בערוץ →</span>
+            </a>
+            <a href="https://www.youtube.com/@statquest" target="_blank" class="creator-panel-card">
+                <div class="creator-panel-head">
+                    <span class="creator-name">StatQuest with Josh Starmer</span>
+                    <span class="creator-platform-badge platform-youtube">YouTube</span>
+                </div>
+                <p class="creator-desc">הסברים פשוטים וויזואליים למושגים מורכבים בסטטיסטיקה, למידת מכונה ומדעי הנתונים. מפרק נושאים קשים לצעדים קטנים וקלים להבנה.</p>
+                <span class="creator-link">בקרו בערוץ →</span>
+            </a>
+            <a href="https://www.youtube.com/@NeuralNine" target="_blank" class="creator-panel-card">
+                <div class="creator-panel-head">
+                    <span class="creator-name">NeuralNine</span>
+                    <span class="creator-platform-badge platform-youtube">YouTube</span>
+                </div>
+                <p class="creator-desc">מדריכי תכנות פרקטיים ב-Python המתמקדים בבינה מלאכותית, למידת מכונה, ופיתוח פרויקטים מתקדמים מאפס.</p>
+                <span class="creator-link">בקרו בערוץ →</span>
+            </a>
+            <a href="https://www.youtube.com/@juliaturc1" target="_blank" class="creator-panel-card">
+                <div class="creator-panel-head">
+                    <span class="creator-name">Julia Turc</span>
+                    <span class="creator-platform-badge platform-youtube">YouTube</span>
+                </div>
+                <p class="creator-desc">הסברים מעמיקים ואיכותיים על מודלי שפה (LLMs), ארכיטקטורת Transformers ומחקרים עדכניים בעולם ה-NLP.</p>
+                <span class="creator-link">בקרו בערוץ →</span>
+            </a>
+            <a href="https://www.youtube.com/@jbhuang0604" target="_blank" class="creator-panel-card">
+                <div class="creator-panel-head">
+                    <span class="creator-name">Jia-Bin Huang</span>
+                    <span class="creator-platform-badge platform-youtube">YouTube</span>
+                </div>
+                <p class="creator-desc">ניתוח טכני מעולה של מחקרי Computer Vision ו-Generative AI, כולל הסברים מפורטים על מאמרים פורצי דרך.</p>
+                <span class="creator-link">בקרו בערוץ →</span>
+            </a></div>
+        </aside>
+    <script>
+        const SEEN_KEY = 'ai_roadmap_seen';
+
+        function getSeen() {
+            try { return JSON.parse(localStorage.getItem(SEEN_KEY) || '{}'); } catch(e) { return {}; }
+        }
+
+        function toggleSeen(btn) {
+            const wrapper = btn.closest('.step-card-wrapper');
+            if (!wrapper) return;
+            const url = wrapper.dataset.url;
+            const seen = getSeen();
+            if (seen[url]) {
+                delete seen[url];
+                wrapper.classList.remove('seen');
+            } else {
+                seen[url] = 1;
+                wrapper.classList.add('seen');
+            }
+            localStorage.setItem(SEEN_KEY, JSON.stringify(seen));
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const seen = getSeen();
+            document.querySelectorAll('.step-card-wrapper[data-url]').forEach(function (wrapper) {
+                if (seen[wrapper.dataset.url]) {
+                    wrapper.classList.add('seen');
+                }
+            });
+        });
+
+        function showSection(id, el) {
+            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            el.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleCreatorsPanel() {
+            const panel = document.getElementById('creatorsPanel');
+            const backdrop = document.getElementById('creatorsBackdrop');
+            const btn = document.querySelector('.floating-creators-btn');
+            if (!panel || !backdrop || !btn) {
+                return;
+            }
+            const willOpen = !panel.classList.contains('open');
+            panel.classList.toggle('open', willOpen);
+            backdrop.classList.toggle('open', willOpen);
+            btn.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+            panel.setAttribute('aria-hidden', willOpen ? 'false' : 'true');
+        }
+
+        function closeCreatorsPanel() {
+            const panel = document.getElementById('creatorsPanel');
+            const backdrop = document.getElementById('creatorsBackdrop');
+            const btn = document.querySelector('.floating-creators-btn');
+            if (!panel || !backdrop || !btn) {
+                return;
+            }
+            panel.classList.remove('open');
+            backdrop.classList.remove('open');
+            btn.setAttribute('aria-expanded', 'false');
+            panel.setAttribute('aria-hidden', 'true');
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeCreatorsPanel();
+            }
+        });
+
+        document.addEventListener('click', function(event) {
+            const panel = document.getElementById('creatorsPanel');
+            const btn = document.querySelector('.floating-creators-btn');
+            if (!panel || !btn || !panel.classList.contains('open')) {
+                return;
+            }
+            if (!panel.contains(event.target) && !btn.contains(event.target)) {
+                closeCreatorsPanel();
+            }
+        });
+    </script>
+</body>
+</html>

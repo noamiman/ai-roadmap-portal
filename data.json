@@ -1,0 +1,438 @@
+{
+    "home": {
+        "title": "דף הבית",
+        "emoji": "🏠",
+        "description": "ברוכים הבאים לפורטל למידת ה-AI שלי.",
+        "difficulty": "beginner",
+        "duration": "N/A",
+        "tags": [
+            "welcome",
+            "introduction"
+        ],
+        "guides": [],
+        "tools": []
+    },
+    "creators": {
+        "title": "יוצרים מומלצים",
+        "emoji": "⭐",
+        "description": "יוצרי תוכן ומחברים שאני עוקב אחריהם ומרגיש שמעשירים אותי בתחום ה-AI",
+        "creators": [
+            {
+                "name": "3Blue1Brown",
+                "url": "https://www.youtube.com/@3blue1brown",
+                "platform": "YouTube",
+                "desc": "ויזואליזציות מדהימות של מתמטיקה ו-AI. הסדרה Neural Networks שלו היא אחת הדרכים הכי טובות להבין את הבסיס."
+            },
+            {
+                "name": "Two Minute Papers",
+                "url": "https://www.youtube.com/@TwoMinutePapers",
+                "platform": "YouTube",
+                "desc": "סקירות קצרות ומרתקות של מחקרי AI חדשים. הדרך הכי מהירה להישאר מעודכן בקצה הטכנולוגיה."
+            },
+            {
+                "name": "StatQuest with Josh Starmer",
+                "url": "https://www.youtube.com/@statquest",
+                "platform": "YouTube",
+                "desc": "הסברים פשוטים וויזואליים למושגים מורכבים בסטטיסטיקה, למידת מכונה ומדעי הנתונים. מפרק נושאים קשים לצעדים קטנים וקלים להבנה."
+            },
+            {
+                "name": "NeuralNine",
+                "url": "https://www.youtube.com/@NeuralNine",
+                "platform": "YouTube",
+                "desc": "מדריכי תכנות פרקטיים ב-Python המתמקדים בבינה מלאכותית, למידת מכונה, ופיתוח פרויקטים מתקדמים מאפס."
+            },
+            {
+                "name": "Julia Turc",
+                "url": "https://www.youtube.com/@juliaturc1",
+                "platform": "YouTube",
+                "desc": "הסברים מעמיקים ואיכותיים על מודלי שפה (LLMs), ארכיטקטורת Transformers ומחקרים עדכניים בעולם ה-NLP."
+            },
+            {
+                "name": "Jia-Bin Huang",
+                "url": "https://www.youtube.com/@jbhuang0604",
+                "platform": "YouTube",
+                "desc": "ניתוח טכני מעולה של מחקרי Computer Vision ו-Generative AI, כולל הסברים מפורטים על מאמרים פורצי דרך."
+            }
+        ]
+    },
+    "ai_foundations": {
+        "title": "Neural Architectures Basics",
+        "emoji": "🧠",
+        "description": "הבסיס העמוק של בינה מלאכותית: מרשתות נוירונים בסיסיות, דרך ארכיטקטורות מתקדמות כמו CNN ו-Transformers ועד מודלים גנרטיביים.",
+        "difficulty": "intermediate",
+        "duration": "4-8 months",
+        "tags": [
+            "deep learning",
+            "neural networks",
+            "transformers",
+            "computer vision",
+            "nlp"
+        ],
+        "tools": [
+            {
+                "title": "Hugging Face",
+                "desc": "הפלטפורמה המרכזית למודלי AI. כוללת אלפי מודלים מוכנים, דאטה-סטים למחקר ומדריכים מעמיקים להעשרת הידע.",
+                "url": "https://huggingface.co/"
+            },
+            {
+                "title": "Neural Network Playground",
+                "desc": "סימולטור אינטראקטיבי המאפשר להבין ויזואלית איך רשתות נוירונים לומדות, על ידי שינוי פרמטרים בזמן אמת.",
+                "url": "https://playground.tensorflow.org/"
+            }
+        ],
+        "subjects": [
+            {
+                "title": "Neural Network Foundations",
+                "level": "beginner",
+                "guides": [
+                    {
+                        "title": "1. What is a Neural Network? (פרק 1)",
+                        "desc": "מבוא ויזואלי מקיף מאת 3Blue1Brown המסביר מהן רשתות נוירונים ואיך הן בנויות בשכבות.",
+                        "url": "https://www.youtube.com/watch?v=aircAruvnKk&t=71s"
+                    },
+                    {
+                        "title": "2. Gradient Descent (פרק 2)",
+                        "desc": "הסבר על האלגוריתם שמאפשר לרשתות ללמוד על ידי מזעור פונקציית ההפסד.",
+                        "url": "https://www.youtube.com/watch?v=IHZwWFHWa-w&t=833s"
+                    },
+                    {
+                        "title": "3. Backpropagation (פרק 3)",
+                        "desc": "צלילה למתמטיקה שמאחורי עדכון המשקולות ברשת - הלב של ה-Deep Learning.",
+                        "url": "https://www.youtube.com/watch?v=Ilg3gGewQ5U&t=2s"
+                    },
+                    {
+                        "title": "4. Backpropagation Calculus (פרק 4)",
+                        "desc": "המשך והעמקה בחישובים המתמטיים (Calculus) המאפשרים את פעולת ה-Backpropagation.",
+                        "url": "https://www.youtube.com/watch?v=tIeHLnjs5U8"
+                    }
+                ]
+            },
+            {
+                "title": "Computer Vision Architectures",
+                "level": "intermediate",
+                "guides": [
+                    {
+                        "title": "5. Convolutional Neural Networks (CNN)",
+                        "desc": "הסבר ויזואלי מרהיב על הארכיטקטורה ששינתה את עולם הראייה הממוחשבת.",
+                        "url": "https://www.youtube.com/watch?v=KuXjwB4LzSA&t=1s"
+                    },
+                    {
+                        "title": "6. CNN - מדריך קצר וספציפי",
+                        "desc": "סקירה ממוקדת על אופן הפעולה של שכבות קונבולוציה וסינון מאפיינים בתמונה.",
+                        "url": "https://youtu.be/YRhxdVk_sIs?si=fXIzj-OaJty-4Dmt"
+                    },
+                    {
+                        "title": "7. AutoEncoders - מבוא",
+                        "desc": "למידה לא מונחית (Unsupervised) לצורך דחיסת נתונים ושחזורם.",
+                        "url": "https://youtu.be/Rdpbnd0pCiI?si=u92QFUP2CAqL8GXi"
+                    },
+                    {
+                        "title": "8. AutoEncoders - העמקה",
+                        "desc": "שימושים מתקדמים ב-AutoEncoders להפחתת מימדים וניקוי רעשים.",
+                        "url": "https://youtu.be/hZ4a4NgM3u0?si=ioZ2_KhLMSK3mmXR"
+                    },
+                    {
+                        "title": "9. AlexNet Architecture",
+                        "desc": "ניתוח הארכיטקטורה ההיסטורית שהוכיחה את העליונות של Deep Learning ב-ImageNet.",
+                        "url": "https://youtu.be/Nq3auVtvd9Q?si=MN-JWRvpGjF03eT-"
+                    },
+                    {
+                        "title": "10. Recurrent Neural Networks (RNN)",
+                        "desc": "מבוא לרשתות עם זיכרון המיועדות לניתוח סדרות של נתונים (כמו טקסט או וידאו).",
+                        "url": "https://youtu.be/AsNTP8Kwu80?si=6PoEWJ_QYDzBliWF"
+                    },
+                    {
+                        "title": "11. ResNet - Residual Networks",
+                        "desc": "כיצד 'קיצורי דרך' (Skip Connections) מאפשרים לאמן רשתות עמוקות מאוד ללא דעיכת גרדיאנט.",
+                        "url": "https://youtu.be/GWt6Fu05voI?si=Qo3P-pOLng0q6EWx"
+                    }
+                ]
+            },
+            {
+                "title": "Generative Models",
+                "level": "intermediate",
+                "guides": [
+                    {
+                        "title": "12. GAN - הסבר תיאורטי",
+                        "desc": "רשתות אדברסריות יוצרות (Generative Adversarial Networks) והקונספט של 'הזייפן מול השוטר'.",
+                        "url": "https://youtu.be/TpMIssRdhco?si=WIpvRGf2NTj7tDYF"
+                    },
+                    {
+                        "title": "13. GAN - ניתוח דף המחקר",
+                        "desc": "צלילה למאמר המקורי של איאן גודפלו והבנת המבנה המתמטי של GAN.",
+                        "url": "https://youtu.be/eyxmSmjmNS0?si=si6DtAxHauR0IbEt"
+                    },
+                    {
+                        "title": "14. GAN - הסבר משלים",
+                        "desc": "דוגמאות נוספות וטכניקות לאימון יציב של מודלים גנרטיביים.",
+                        "url": "https://youtu.be/_qB4B6ttXk8?si=DW8FE-1GfXPvw-BI"
+                    },
+                    {
+                        "title": "15. Word2Vec",
+                        "desc": "איך הופכים מילים לוקטורים מתמטיים שמשמרים משמעות סמנטית.",
+                        "url": "https://youtu.be/yexR53My2O4?si=IjCv0ynS5qzIs3BJ"
+                    }
+                ]
+            },
+            {
+                "title": "Sequence Models and Embeddings",
+                "level": "advanced",
+                "guides": [
+                    {
+                        "title": "16. LSTM - Long Short-Term Memory",
+                        "desc": "פתרון בעיית הזיכרון לטווח ארוך ברשתות RNN בעזרת מנגנוני Gating.",
+                        "url": "https://youtu.be/YCzL96nL7j0?si=GLzgumU2fwZU6F2f"
+                    },
+                    {
+                        "title": "17. LSTM - הסבר נוסף",
+                        "desc": "פירוק המבנה הפנימי של תא LSTM והבנה איך מידע נשמר או נשכח.",
+                        "url": "https://youtu.be/QciIcRxJvsM?si=enx-amWOBkbgOd6c"
+                    },
+                    {
+                        "title": "18. LSTM - הרחבה טכנית",
+                        "desc": "העמקה נוספת במימוש וביצועים של LSTM במשימות רצף מורכבות.",
+                        "url": "https://youtu.be/8HyCNIVRbSU?si=GNOs8r6DTbGEfuz8"
+                    },
+                    {
+                        "title": "19. Transformers - דף המחקר",
+                        "desc": "ניתוח המאמר 'Attention Is All You Need' - המהפכה שמאחורי GPT ומודלי שפה מודרניים.",
+                        "url": "https://youtu.be/iDulhoQ2pro?si=7Qiltm1d4kixZVeI"
+                    }
+                ]
+            },
+            {
+                "title": "Transformers and Modern LLM Concepts",
+                "level": "advanced",
+                "guides": [
+                    {
+                        "title": "20. Hugging Face Course - Transformers",
+                        "desc": "קורס פרקטי המסביר את עולם ה-NLP המודרני ושימוש בספריית Hugging Face.",
+                        "url": "https://huggingface.co/learn/llm-course/chapter1/1"
+                    },
+                    {
+                        "title": "21. Vision Transformers (ViT)",
+                        "desc": "כיצד ארכיטקטורת ה-Transformer מיושמת על תמונות ומחליפה במקרים מסוימים את ה-CNN.",
+                        "url": "https://www.youtube.com/watch?v=TrdevFK_am4"
+                    },
+                    {
+                        "title": "22. RoPE - Rotary Positional Embedding",
+                        "desc": "הסבר על שיטה מתקדמת לקידוד מיקום ב-Transformers, הנפוצה במודלים כמו Llama.",
+                        "url": "https://youtu.be/V8r__fXx7tU?si=Ym9Fszmm9RatNcIe"
+                    },
+                    {
+                        "title": "23. MoE - Mixture of Experts",
+                        "desc": "איך לאמן מודלי ענק ביעילות על ידי הפעלת רק חלק מהפרמטרים בכל פעם.",
+                        "url": "https://www.youtube.com/watch?v=0QQlYR1r6pQ"
+                    }
+                ]
+            }
+        ]
+    },
+    "ai_coding_tools": {
+        "title": "AI Code Editors & Assistants",
+        "emoji": "💻",
+        "description": "הכלים שאני ממליץ עליהם לקידוד עם AI — מעוזרי IDE ועד סוכנים אוטונומיים שכותבים קוד בשבילך.",
+        "difficulty": "beginner",
+        "duration": "ongoing",
+        "tags": ["coding tools", "copilot", "code generation", "ide"],
+        "tools": [
+            {
+                "title": "VSCode",
+                "desc": "עורך הקוד הפופולרי ביותר, עם תמיכה בכל תוספי ה-AI המובילים כמו Copilot ו-Cline.",
+                "url": "https://code.visualstudio.com/"
+            },
+            {
+                "title": "PyCharm",
+                "desc": "סביבת פיתוח מקצועית ל-Python עם יכולות AI מובנות ותמיכה בתוספים חיצוניים.",
+                "url": "https://www.jetbrains.com/pycharm/"
+            }
+        ],
+        "subjects": [
+            {
+                "title": "AI Code Assistants",
+                "level": "intermediate",
+                "guides": [
+                    {
+                        "title": "GitHub Copilot",
+                        "desc": "עוזר הקוד הנפוץ ביותר בתעשייה. משולב ישירות ב-VSCode ו-JetBrains — משלים קוד, מסביר שגיאות וכותב פונקציות שלמות תוך כדי הקלדה.",
+                        "url": "https://www.youtube.com/watch?v=SJqGYwRq0uc"
+                    },
+                    {
+                        "title": "Cursor",
+                        "desc": "עורך קוד מבוסס VSCode עם AI עמוק שמבין את כל ה-codebase. מאפשר לערוך קבצים שלמים בפקודה אחת ולנהל שיחה ישירה עם הקוד.",
+                        "url": "https://youtu.be/Rgz6mX93C4Y?si=yXRMldig7h2IGyN3"
+                    },
+                    {
+                        "title": "Claude Code (Anthropic)",
+                        "desc": "סוכן קוד אוטונומי שעובד ישירות מהטרמינל. מבין את כל הפרויקט, כותב תכונות, מתקן באגים ומריץ בדיקות — ללא צורך ב-IDE.",
+                        "url": "https://www.youtube.com/watch?v=eMZmDH3T2bY"
+                    },
+                    {
+                        "title": "Cline (VSCode Extension)",
+                        "desc": "תוסף VSCode קוד-פתוח שמאפשר לכל מודל (Claude, GPT, Gemini) לפעול כסוכן אוטונומי: יוצר קבצים, מריץ פקודות ומנפה שגיאות בזמן אמת.",
+                        "url": "https://youtu.be/f33Fw6NiPpw?si=Q-UaggQBXlHIb3T_"
+                    }
+                ]
+            },
+            {
+                "title": "Web App Builders",
+                "level": "beginner",
+                "guides": [
+                    {
+                        "title": "Base44",
+                        "desc": "פלטפורמה ישראלית לבניית אפליקציות web מלאות בעזרת AI. מתארים בשפה טבעית מה רוצים — והיא בונה את כל הממשק, הלוגיקה והדאטה.",
+                        "url": "https://base44.com/"
+                    },
+                    {
+                        "title": "Lovable",
+                        "desc": "כלי web לבנייה מהירה של אפליקציות React מלאות על ידי תיאור טקסטואלי בלבד. מייצר קוד נקי, מחובר ל-Supabase ומאפשר deploy מיידי.",
+                        "url": "https://lovable.dev/"
+                    }
+                ]
+            }
+        ]
+    },
+    "machine_learning_algorithms": {
+        "title": "Machine Learning Algorithms",
+        "emoji": "📊",
+        "description": "מפת דרכים לאלגוריתמים קלאסיים ב-ML: מהבסיס של רגרסיה וסיווג ועד מודלים מתקדמים של Boosting ואנסמבלים.",
+        "difficulty": "intermediate",
+        "duration": "2-5 months",
+        "tags": [
+            "machine learning",
+            "classification",
+            "regression",
+            "clustering",
+            "ensembles",
+            "boosting"
+        ],
+        "tools": [
+            {
+                "title": "Scikit-learn",
+                "desc": "הדוקומנטציה הרשמית והספרייה המרכזית ל-ML קלאסי ב-Python: אלגוריתמים, דוגמאות, ו-API מלא.",
+                "url": "https://scikit-learn.org/stable/"
+            },
+            {
+                "title": "Pandas",
+                "desc": "הכלי המרכזי לניתוח ועיבוד נתונים (Data Manipulation). מאפשר עבודה נוחה עם טבלאות (DataFrames), סינון נתונים וטיפול במידע חסר.",
+                "url": "https://pandas.pydata.org/docs/"
+            },
+            {
+                "title": "Matplotlib",
+                "desc": "ספריית הבסיס ליצירת גרפים והדמיות נתונים ב-Python. מאפשרת שליטה מלאה על כל אלמנט בגרף ויצירת תרשימים דו-ממדיים.",
+                "url": "https://matplotlib.org/stable/index.html"
+            },
+            {
+                "title": "Seaborn",
+                "desc": "ספריית הדמיית נתונים המבוססת על Matplotlib ומספקת ממשק ברמה גבוהה יותר ליצירת גרפים סטטיסטיים מעוצבים ומרשימים בקלות.",
+                "url": "https://seaborn.pydata.org/"
+            }
+        ],
+        "subjects": [
+            {
+                "title": "ML Foundations (Supervised Basics)",
+                "level": "beginner",
+                "guides": [
+                    {
+                        "title": "1. Linear Regression",
+                        "desc": "האלגוריתם הבסיסי לרגרסיה וחיזוי ערכים רציפים, כולל אינטואיציה והטמעה בסיסית.",
+                        "url": "https://youtu.be/VmbA0pi2cRQ?si=QMuMY4wrHpqFLxvf"
+                    },
+                    {
+                        "title": "2. Logistic Regression (Classification)",
+                        "desc": "מודל סיווג בסיסי ועוצמתי לבעיות בינאריות ורב-מחלקתיות.",
+                        "url": "https://youtu.be/yIYKR4sgzI8?si=p9an_cAy63pOEO0G"
+                    },
+                    {
+                        "title": "3. k-Nearest Neighbors (kNN)",
+                        "desc": "סיווג/רגרסיה לפי השכנים הקרובים ביותר במרחב הפיצ'רים.",
+                        "url": "https://www.youtube.com/watch?v=HVXime0nQeI"
+                    },
+                    {
+                        "title": "4. Naive Bayes",
+                        "desc": "משפחת מודלים הסתברותיים מהירים, מעולים במיוחד לבעיות טקסט וסיווג בסיסי.",
+                        "url": "https://youtu.be/lJGHZO0rqs0?si=tTDZ6qJuNCsvlB0w"
+                    }
+                ]
+            },
+            {
+                "title": "Trees, Ensembles and Core Classification",
+                "level": "intermediate",
+                "guides": [
+                    {
+                        "title": "5. Decision Trees",
+                        "desc": "עצים להסבריות גבוהה ולפתרון בעיות סיווג ורגרסיה.",
+                        "url": "https://www.youtube.com/watch?v=7VeUPuFGJHk"
+                    },
+                    {
+                        "title": "6. Random Forest",
+                        "desc": "אנסמבל של עצים לשיפור יציבות וביצועים ביחס לעץ בודד.",
+                        "url": "https://www.youtube.com/watch?v=J4Wdy0Wc_xQ"
+                    },
+                    {
+                        "title": "Gini Impurity",
+                        "desc": "הסבר מעמיק על מדד ה-Gini המשמש לבניית עצי החלטה ומדידת רמת הפיצול של הנתונים.",
+                        "url": "https://www.youtube.com/watch?v=u4IxOk2ijSs"
+                    },
+                    {
+                        "title": "7. Support Vector Machines (SVM)",
+                        "desc": "אלגוריתם סיווג חזק במיוחד במרחבים מורכבים, עם שימוש ב-Kernels.",
+                        "url": "https://youtu.be/ny1iZ5A8ilA?si=PfmS806JzW6ZntCF"
+                    },
+                    {
+                        "title": "8. Gradient Boosting",
+                        "desc": "בוסטינג קלאסי לבניית מודל חזק כרצף של לומדים חלשים. מי שרוצה להעמיק יכול להמשיך לפרקים 2, 3 ו-4 של הסרטון הזה.",
+                        "url": "https://youtu.be/3CC4N4z3GJc?si=QMuMY4wrHpqFLxvf"
+                    }
+                ]
+            },
+            {
+                "title": "Unsupervised Learning and Clustering",
+                "level": "intermediate",
+                "guides": [
+                    {
+                        "title": "9. k-Means Clustering",
+                        "desc": "אלגוריתם קלאסטרינג בסיסי לקיבוץ דגימות לקבוצות לפי דמיון.",
+                        "url": "https://www.youtube.com/watch?v=4b5d3muPQmA"
+                    },
+                    {
+                        "title": "10. DBSCAN",
+                        "desc": "קלאסטרינג מבוסס צפיפות שמזהה גם רעשים וחריגים.",
+                        "url": "https://youtu.be/_A9Tq6mGtLI?si=89hcbw1_9-D-gIZl"
+                    },
+                    {
+                        "title": "11. Hierarchical Clustering",
+                        "desc": "קלאסטרינג היררכי לבניית מבנה עץ של קבוצות נתונים.",
+                        "url": "https://youtu.be/8QCBl-xdeZI?si=6fMHgnqaqNMGEsjt"
+                    },
+                    {
+                        "title": "12. Principal Component Analysis (PCA)",
+                        "desc": "הפחתת מימדים ושיפור הבנה/ביצועים של דאטה מרובה פיצ'רים.",
+                        "url": "https://www.youtube.com/watch?v=FgakZw6K1QQ"
+                    }
+                ]
+            },
+            {
+                "title": "Advanced Boosting and Modern Tabular Models",
+                "level": "advanced",
+                "guides": [
+                    {
+                        "title": "13. XGBoost",
+                        "desc": "אחת מספריות ה-Gradient Boosting החזקות ביותר לנתונים טבלאיים. מי שרוצה להעמיק יכול להמשיך לפרקים 2, 3 ו-4 של הסרטון הזה.",
+                        "url": "https://www.youtube.com/watch?v=OtD8wVaFm6E"
+                    },
+                    {
+                        "title": "14. CatBoost",
+                        "desc": "בוסטינג מתקדם עם תמיכה חזקה בקטגוריות ו-preprocessing חכם. מי שרוצה להעמיק יכול להמשיך לפרקים 2, 3 ו-4 של הסרטון הזה.",
+                        "url": "https://www.youtube.com/watch?v=KXOTSkPL2X4"
+                    },
+                    {
+                        "title": "15. LightGBM",
+                        "desc": "בוסטינג מהיר ויעיל במיוחד לסטים גדולים וביצועים גבוהים.",
+                        "url": "https://youtu.be/n_ZMQj09S6w?si=DUnZpxEPL0qgJvwP"
+                    }
+                ]
+            }
+        ]
+    }
+}

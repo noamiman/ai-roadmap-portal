@@ -1,0 +1,4 @@
+section,subject,title,description,url,type,difficulty,duration,tags
+computer_vision,Image Processing Basics,OpenCV Tutorial,Learn basic image processing with OpenCV,https://opencv.org/guide/,guide,beginner,1 week,image processing
+ai_fundamentals,Responsible AI,AI Ethics Guide,Understanding ethical considerations in AI,https://www.elementsofai.com/ethics,guide,beginner,2 hours,ethics
+deep_learning,,PyTorch Basics,Introduction to PyTorch for beginners,https://pytorch.org/tutorials/,tool,intermediate,1 month,pytorch
