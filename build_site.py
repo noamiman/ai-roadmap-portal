@@ -125,7 +125,7 @@ def add_json_data(json_file, data_file="data.json"):
         print(f"❌ שגיאה בהוספת נתונים מ-JSON: {e}")
         return False
 
-def generate_ultimate_portal(data, output_file="ai_full_roadmap.html"):
+def generate_ultimate_portal(data, output_file="index.html"):
     if not data:
         return
 
@@ -322,7 +322,7 @@ def generate_ultimate_portal(data, output_file="ai_full_roadmap.html"):
     print(f"🔥 האתר נוצר בכתובת: {os.path.abspath(output_file)}")
 
 
-def build_once(data_file="data.json", output_file="ai_full_roadmap.html"):
+def build_once(data_file="data.json", output_file="index.html"):
     data = load_data(data_file)
     if data:
         generate_ultimate_portal(data, output_file=output_file)
@@ -330,7 +330,7 @@ def build_once(data_file="data.json", output_file="ai_full_roadmap.html"):
     return False
 
 
-def watch_and_build(data_file="data.json", output_file="ai_full_roadmap.html", interval=1.0):
+def watch_and_build(data_file="data.json", output_file="index.html", interval=1.0):
     watched_files = [
         data_file,
         "templates/base.html",
@@ -373,7 +373,7 @@ if __name__ == "__main__":
     parser.add_argument("--watch", action="store_true", help="Automatically rebuild when files change")
     parser.add_argument("--interval", type=float, default=1.0, help="Watch polling interval in seconds")
     parser.add_argument("--data", default="data.json", help="Path to data JSON file")
-    parser.add_argument("--output", default="ai_full_roadmap.html", help="Output HTML path")
+    parser.add_argument("--output", default="index.html", help="Output HTML path")
     args = parser.parse_args()
 
     if args.watch:

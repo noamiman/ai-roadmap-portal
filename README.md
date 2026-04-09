@@ -1,64 +1,54 @@
-# AI Roadmap Project
+# AI Learning Roadmap Portal
 
-A curated AI learning portal in Hebrew, generated from JSON data into a static HTML site.
+A Hebrew AI learning portal generated from JSON data into a static website.
 
-## What This Project Includes
+## Features
 
-- Static site generator in Python (`build_site.py`)
-- Data-driven content source (`data.json`)
-- Jinja2 template (`templates/base.html`)
-- Generated site output (`ai_full_roadmap.html`)
-- Floating creators panel and tutorial "seen" markers (saved in browser localStorage)
+- Data-driven content from `data.json`
+- Static site generation via `build_site.py`
+- Clean UI template in `templates/base.html`
+- Floating creators panel
+- "Seen tutorial" markers saved in browser localStorage
 
-## Quick Start
+## Project Structure
 
-### 1. Create and activate virtual environment
+- `build_site.py` - static site generator and watch mode
+- `data.json` - all sections, guides, and tools
+- `templates/base.html` - HTML template, CSS, and client-side JS
+- `index.html` - generated deploy-ready output file
+- `favicon.svg` - site icon
+- `requirements.txt` - Python dependencies
+- `sample_data.csv` - sample data import format
+
+## Setup
 
 ```bash
 python3 -m venv venv
 source venv/bin/activate
-```
-
-### 2. Install dependencies
-
-```bash
 pip install -r requirements.txt
 ```
 
-### 3. Build the site
+## Build
+
+Generate the site:
 
 ```bash
 python build_site.py
 ```
 
-Output file:
+Output:
 
-- `ai_full_roadmap.html`
+- `index.html`
 
-### 4. Auto rebuild on changes (watch mode)
+Watch mode (auto rebuild on file changes):
 
 ```bash
 python build_site.py --watch
 ```
 
-## Project Structure
+## Content Editing
 
-- `build_site.py` - main generator and watch mode
-- `data.json` - all sections, guides, tools, creators
-- `templates/base.html` - page structure, styles, scripts
-- `favicon.svg` - tab icon
-- `sample_data.csv` - sample import format
-- `requirements.txt` - Python dependencies
-
-## Editing Content
-
-Most updates should be made in `data.json`:
-
-- Add/edit sections
-- Add guides and tools
-- Add creators list
-
-After editing, run:
+Edit `data.json`, then rebuild:
 
 ```bash
 python build_site.py
@@ -66,29 +56,28 @@ python build_site.py
 
 ## Deploy
 
-This is a static site. You can deploy `ai_full_roadmap.html` and related assets directly.
+This project is static and can be deployed to:
 
-### Simple options
-
-- GitHub Pages
 - Netlify
+- GitHub Pages
 - Vercel (static)
-- Any static web server
+- Any static hosting service
 
-## Push to GitHub
+### Netlify (recommended)
 
-If not already connected to a remote:
+- Connect your GitHub repo
+- Publish directory: `.`
+- Build command: leave empty if `index.html` is committed
+
+## GitHub Push
 
 ```bash
-git init
 git add .
-git commit -m "Initial commit: AI roadmap portal"
-git branch -M main
-git remote add origin <YOUR_REPO_URL>
-git push -u origin main
+git commit -m "Update content"
+git push
 ```
 
 ## Notes
 
-- `venv/` and `__pycache__/` are ignored via `.gitignore`.
-- Seen tutorial marks are stored in browser `localStorage`, per browser/device.
+- `venv/` and `__pycache__/` are ignored by `.gitignore`.
+- Seen markers are per browser/device because they use localStorage.
