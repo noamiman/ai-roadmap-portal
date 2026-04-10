@@ -218,17 +218,17 @@
         .content-section.active { display: block; animation: fadeIn 0.4s ease-out; }
 
         /* Welcome Card */
-        .welcome-container { display: flex; justify-content: center; align-items: center; min-height: 74vh; margin-top: 0; padding-top: calc(2.1rem + 30px); }
+        .welcome-container { display: flex; justify-content: center; align-items: center; min-height: 82vh; margin-top: 0; padding-top: calc(2.6rem + 20px); }
         .welcome-card {
             background:
                 linear-gradient(145deg, rgba(255, 255, 255, 0.96) 0%, rgba(241, 249, 255, 0.92) 100%);
-            padding: 3rem 2.8rem;
+            padding: 3.25rem 3.25rem 2.8rem;
             border-radius: 28px;
             border: 1px solid var(--border);
             box-shadow: 0 22px 40px rgba(15, 23, 42, 0.09);
             text-align: center;
             width: 100%;
-            min-height: 72vh;
+            max-width: 1040px;
             position: relative;
             overflow: hidden;
         }
@@ -244,7 +244,7 @@
         }
         .welcome-card h1 { font-size: 2.2rem; color: var(--accent); margin-bottom: 1.3rem; line-height: 1.2; }
         .welcome-card p { font-size: 1.08rem; line-height: 1.75; margin-bottom: 0.95rem; }
-        .contact-links { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+        .contact-links { margin-top: 1.45rem; padding-top: 1.1rem; border-top: 1px solid var(--border); }
         .contact-links p { margin-bottom: 1rem; font-size: 1rem; color: var(--text-dim); }
         .contact-links-row { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
         .contact-link-card { display: inline-flex; align-items: center; gap: 0.7rem; padding: 0.95rem 1.2rem; min-width: 190px; border-radius: 16px; text-decoration: none; color: var(--text); background: linear-gradient(135deg, var(--card) 0%, var(--bg-elevated) 100%); border: 1px solid var(--border); box-shadow: 0 10px 24px rgba(14, 165, 233, 0.08); transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease; }
@@ -473,7 +473,7 @@
             .contact-links-row { flex-direction: column; }
             .contact-link-card { width: 100%; min-width: 0; justify-content: flex-start; }
             .subject-title { flex-direction: column; align-items: center; text-align: center; }
-            .welcome-container { min-height: auto; padding-top: 1rem; }
+            .welcome-container { min-height: auto; padding-top: 0.8rem; }
             .welcome-card { padding: 2rem 1.2rem; border-radius: 20px; min-height: auto; }
             .welcome-card h1 { font-size: 1.72rem; }
             .welcome-card p { font-size: 0.98rem; }
