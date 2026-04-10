@@ -410,14 +410,14 @@
         }
 
         .a11y-toolbar {
-            position: fixed;
-            right: 18px;
-            bottom: 18px;
-            z-index: 1250;
+            margin-top: auto;
+            width: 100%;
             display: flex;
             flex-direction: column;
-            align-items: flex-end;
+            align-items: stretch;
             gap: 0.5rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid var(--border);
         }
         .a11y-main-btn,
         .a11y-option-btn {
@@ -426,37 +426,99 @@
             color: var(--text);
             font-family: inherit;
             cursor: pointer;
-            box-shadow: 0 10px 24px rgba(2, 132, 199, 0.16);
         }
         .a11y-main-btn {
             border-radius: 999px;
-            padding: 0.75rem 1rem;
+            padding: 0.62rem 0.8rem;
             font-weight: 800;
+            width: 100%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            background: linear-gradient(135deg, rgba(14,165,233,0.14) 0%, rgba(255,255,255,0.96) 100%);
+            box-shadow: 0 10px 26px rgba(2, 132, 199, 0.24);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
         }
+        .a11y-main-btn:hover {
+            transform: translateY(-1px);
+            border-color: rgba(14,165,233,0.45);
+            box-shadow: 0 14px 30px rgba(2, 132, 199, 0.3);
+        }
+        .a11y-main-label { font-size: 0.94rem; }
+        .a11y-main-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(14,165,233,0.16);
+            color: var(--accent);
+            font-size: 1rem;
+            transition: transform 0.25s ease;
+        }
+        .a11y-toolbar.open .a11y-main-icon { transform: rotate(-20deg) scale(1.05); }
+
         .a11y-options {
-            display: none;
-            min-width: 230px;
-            background: var(--side);
+            width: 100%;
+            min-width: 0;
+            background: color-mix(in srgb, var(--side) 92%, white 8%);
             border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 0.7rem;
-            box-shadow: 0 16px 34px rgba(15, 23, 42, 0.2);
+            border-radius: 16px;
+            padding: 0.72rem;
+            box-shadow: 0 18px 36px rgba(15, 23, 42, 0.22);
+            display: none;
+            gap: 0.48rem;
         }
         .a11y-toolbar.open .a11y-options {
             display: grid;
-            gap: 0.45rem;
         }
         .a11y-option-btn {
             width: 100%;
             text-align: right;
-            border-radius: 10px;
-            padding: 0.6rem 0.75rem;
+            border-radius: 11px;
+            padding: 0.62rem 0.78rem;
             font-weight: 700;
+            transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+        }
+        .a11y-option-btn:hover {
+            border-color: rgba(14,165,233,0.38);
+            background: rgba(14,165,233,0.07);
         }
         .a11y-option-btn[aria-pressed="true"] {
             background: var(--accent-soft);
             border-color: var(--accent);
             color: var(--accent);
+        }
+        .a11y-reset-btn {
+            margin-top: 0.2rem;
+            background: transparent;
+            border-style: dashed;
+            color: var(--text-dim);
+        }
+        .a11y-reset-btn:hover {
+            background: rgba(239, 68, 68, 0.08);
+            border-color: rgba(239, 68, 68, 0.5);
+            color: #b91c1c;
+        }
+        body[data-theme="dark"] .a11y-main-btn {
+            background: linear-gradient(135deg, rgba(56,189,248,0.24) 0%, rgba(17, 27, 46, 0.98) 100%);
+            border-color: rgba(56,189,248,0.34);
+            box-shadow: 0 14px 30px rgba(2, 6, 23, 0.5);
+        }
+        body[data-theme="dark"] .a11y-main-icon {
+            background: rgba(56,189,248,0.24);
+            color: #dbeafe;
+        }
+        body[data-theme="dark"] .a11y-option-btn:hover {
+            background: rgba(56,189,248,0.18);
+            border-color: rgba(56,189,248,0.5);
+        }
+        body[data-theme="dark"] .a11y-reset-btn:hover {
+            background: rgba(248,113,113,0.2);
+            border-color: rgba(248,113,113,0.45);
+            color: #fecaca;
         }
 
         /* --- RESPONSIVE --- */
@@ -486,8 +548,9 @@
                 box-shadow: 0 10px 22px rgba(2, 132, 199, 0.32);
             }
             .creators-panel { width: 92vw; }
-            .a11y-toolbar { right: 12px; bottom: 12px; }
-            .a11y-options { min-width: 205px; }
+            .a11y-toolbar { padding-top: 0.6rem; gap: 0.42rem; }
+            .a11y-main-btn { padding: 0.55rem 0.7rem; }
+            .a11y-options { min-width: 0; }
             /* Mobile: desktop tab hidden, bottom handle shown */
             .nav-tab-btn { display: none !important; }
             .nav-handle-btn {
@@ -544,6 +607,18 @@
         <div class="nav-links-wrapper">
             <div class="nav-links">{{ nav_html|safe }}</div>
         </div>
+        <div class="a11y-toolbar" id="a11yToolbar" aria-label="כלי נגישות בסיסיים">
+            <button type="button" class="a11y-main-btn" id="a11yToggle" onclick="toggleA11yToolbar()" aria-expanded="false" aria-controls="a11yOptions">
+                <span class="a11y-main-label">נגישות</span>
+                <span class="a11y-main-icon" aria-hidden="true">♿</span>
+            </button>
+            <div class="a11y-options" id="a11yOptions">
+                <button type="button" class="a11y-option-btn" id="toggleTextSize" onclick="toggleA11ySetting('largeText')" aria-pressed="false">טקסט גדול יותר</button>
+                <button type="button" class="a11y-option-btn" id="toggleContrast" onclick="toggleA11ySetting('highContrast')" aria-pressed="false">ניגודיות גבוהה</button>
+                <button type="button" class="a11y-option-btn" id="toggleDarkMode" onclick="toggleA11ySetting('darkMode')" aria-pressed="false">מצב כהה</button>
+                <button type="button" class="a11y-option-btn a11y-reset-btn" onclick="resetA11ySettings()">איפוס הגדרות נגישות</button>
+            </div>
+        </div>
         <button type="button" class="nav-handle-btn" id="navHandleBtn" onclick="toggleNav()" aria-label="סגור תפריט"></button>
     </nav>
     <button type="button" class="nav-tab-btn" id="navTabBtn" onclick="toggleNav()" aria-label="סגור תפריט"></button>
@@ -551,15 +626,6 @@
         {{ sections_html|safe }}
     </main>
     {{ creators_panel_html|safe }}
-    <div class="a11y-toolbar" id="a11yToolbar" aria-label="כלי נגישות בסיסיים">
-        <button type="button" class="a11y-main-btn" id="a11yToggle" onclick="toggleA11yToolbar()" aria-expanded="false" aria-controls="a11yOptions">נגישות ♿</button>
-        <div class="a11y-options" id="a11yOptions">
-            <button type="button" class="a11y-option-btn" id="toggleTextSize" onclick="toggleA11ySetting('largeText')" aria-pressed="false">טקסט גדול יותר</button>
-            <button type="button" class="a11y-option-btn" id="toggleContrast" onclick="toggleA11ySetting('highContrast')" aria-pressed="false">ניגודיות גבוהה</button>
-            <button type="button" class="a11y-option-btn" id="toggleDarkMode" onclick="toggleA11ySetting('darkMode')" aria-pressed="false">מצב כהה</button>
-            <button type="button" class="a11y-option-btn" onclick="resetA11ySettings()">איפוס הגדרות נגישות</button>
-        </div>
-    </div>
     <script>
         const SEEN_KEY = 'ai_roadmap_seen';
         const A11Y_KEY = 'ai_roadmap_accessibility';
