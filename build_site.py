@@ -217,9 +217,6 @@ def generate_ultimate_portal(data, output_file="index.html"):
                         </div>
                     </div>
 
-                    <div class="welcome-footer">
-                        <p>💡 <strong>איך להשתמש באתר?</strong> בחרו נושא מהתפריט בצד והתחילו ללמוד!</p>
-                    </div>
                 </div>
             </div>'''
         else:
