@@ -52,6 +52,12 @@
                 "url": "https://www.youtube.com/@jbhuang0604",
                 "platform": "YouTube",
                 "desc": "ניתוח טכני מעולה של מחקרי Computer Vision ו-Generative AI, כולל הסברים מפורטים על מאמרים פורצי דרך."
+            },
+            {
+                "name": "Shawhin Talebi",
+                "url": "https://www.youtube.com/@ShawhinTalebi",
+                "platform": "YouTube",
+                "desc": "תוכן פרקטי ומעודכן על AI Engineering, עבודה עם LLMs, בניית סוכנים ופרויקטים אמיתיים לפרודקשן."
             }
         ]
     },
