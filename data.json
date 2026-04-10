@@ -466,12 +466,12 @@
                 "level": "beginner",
                 "guides": [
                     {
-                        "title": "1. Why Do We Need Activation Functions in Neural Networks?",
+                        "title": "1. Why Activation Functions Matter",
                         "desc": "רענון קריטי על Activation Functions: למה הן נחוצות, ומה קורה בלעדיהן.",
                         "url": "https://www.youtube.com/watch?v=NkOv_k7r6no"
                     },
                     {
-                        "title": "2. Neural Networks Part 5: ArgMax and SoftMax",
+                        "title": "2. Softmax and Argmax Basics",
                         "desc": "הבנה אינטואיטיבית של Softmax ו-ArgMax, בסיס חשוב לחישוב הסתברויות ו-Attention.",
                         "url": "https://youtu.be/KpKog-L9veg?si=guvbHH3Y7vBh2g4D"
                     }
@@ -482,17 +482,17 @@
                 "level": "intermediate",
                 "guides": [
                     {
-                        "title": "3. Transformers, the tech behind LLMs | Deep Learning Chapter 5",
+                        "title": "3. Transformers and How LLMs Work (Big Picture)",
                         "desc": "סקירה ויזואלית מצוינת של Transformer כרעיון כולל והקשר שלו למודלי שפה גדולים.",
                         "url": "https://www.youtube.com/watch?v=wjZofJX0v4M"
                     },
                     {
-                        "title": "4. Attention in transformers, step-by-step | Deep Learning Chapter 6",
+                        "title": "4. Attention in Transformers (Step by Step)",
                         "desc": "פירוק מנגנון Attention שלב-אחר-שלב בצורה אינטואיטיבית וברורה.",
                         "url": "https://www.youtube.com/watch?v=eMlx5fFNoYc"
                     },
                     {
-                        "title": "5. How might LLMs store facts | Deep Learning Chapter 7",
+                        "title": "5. How LLMs Might Store Knowledge",
                         "desc": "המשך טבעי לפרקי ה-Transformer של 3Blue1Brown, עם התמקדות באופן שבו מודלי שפה עשויים לייצג ולשמור עובדות.",
                         "url": "https://www.youtube.com/watch?v=9-Jl0dxWQs8"
                     }
@@ -503,17 +503,17 @@
                 "level": "intermediate",
                 "guides": [
                     {
-                        "title": "6. Query, Key and Value Matrix for Attention Mechanisms in Large Language Models",
+                        "title": "6. Q, K, V Matrices Explained",
                         "desc": "היכרות ישירה עם מטריצות Q, K, V ואיך הן מייצגות מידע במנגנון Attention.",
                         "url": "https://www.youtube.com/watch?v=5fNefE9Fhpg"
                     },
                     {
-                        "title": "7. Understanding the mathematics Behind Dot products and Vector Alignment for Attention Mechanisms",
+                        "title": "7. Dot Products and Vector Similarity for Attention",
                         "desc": "למה מכפלה סקלרית מודדת דמיון בין וקטורים, ואיך זה הופך לציון Attention.",
                         "url": "https://www.youtube.com/watch?v=UmANg8hh4uQ"
                     },
                     {
-                        "title": "8. Calculating Raw Attention Scores for Attention Mechanisms in LLMs and Transformers",
+                        "title": "8. Computing Raw Attention Scores",
                         "desc": "מעבר פרקטי על חישוב ציוני Attention גולמיים לפני Softmax וסקיילינג.",
                         "url": "https://www.youtube.com/watch?v=LvAq5u30U7Q"
                     }
@@ -524,17 +524,17 @@
                 "level": "advanced",
                 "guides": [
                     {
-                        "title": "9. Visualizing Positional Encodings in Sine and Cosine Graphs",
+                        "title": "9. Visual Guide to Sinusoidal Positional Encoding",
                         "desc": "הבנה ויזואלית של Positional Encoding סינוסואידלי ולמה הוא משמר מידע על מיקום.",
                         "url": "https://www.youtube.com/watch?v=SMBK8tK8h9s"
                     },
                     {
-                        "title": "10. Positional embeddings in transformers EXPLAINED (Why add, not concat?)",
+                        "title": "10. Positional Embeddings: Why Add Instead of Concat",
                         "desc": "הסבר פרקטי למה מוסיפים Embeddings ולא מחברים, ואיך זה עובד באימון.",
                         "url": "https://www.youtube.com/watch?v=1biZfFLPRSY"
                     },
                     {
-                        "title": "11. How Rotary Position Embedding Supercharges Modern LLMs [RoPE]",
+                        "title": "11. RoPE Explained (Rotary Position Embeddings)",
                         "desc": "העמקה ב-RoPE: האינטואיציה המתמטית, היתרונות וההשפעה על מודלים מודרניים.",
                         "url": "https://www.youtube.com/watch?v=8Ddq2jJis9Y"
                     }
