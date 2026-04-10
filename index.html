@@ -469,6 +469,10 @@
         <button type="button" class="nav-item " onclick="showSection('machine_learning_algorithms', this)" aria-controls="machine_learning_algorithms" >
             <span class="nav-icon">📊</span>
             <span class="nav-text">Machine Learning Algorithms</span>
+        </button>
+        <button type="button" class="nav-item " onclick="showSection('the_transformer', this)" aria-controls="the_transformer" >
+            <span class="nav-icon">🧩</span>
+            <span class="nav-text">Transformer Architecture & Attention</span>
         </button></div>
     </nav>
     <main id="mainContent" tabindex="-1">
@@ -1186,6 +1190,187 @@
                         <p>ספריית הדמיית נתונים המבוססת על Matplotlib ומספקת ממשק ברמה גבוהה יותר ליצירת גרפים סטטיסטיים מעוצבים ומרשימים בקלות.</p>
                     </div>
                     <a href="https://seaborn.pydata.org/" target="_blank" rel="noopener noreferrer" class="tool-btn" aria-label="Seaborn - נפתח בלשונית חדשה">פתח כלי</a>
+                </div></div>
+                </div>
+            </div>
+        </section>
+        <section id="the_transformer" class="content-section " tabindex="-1">
+            
+            <div class="section-header">
+                <span class="badge">מסלול למידה</span>
+                <h2><span class="emoji">🧩</span> Transformer Architecture & Attention</h2>
+                <p>מסלול ממוקד להבנה עמוקה של Transformers: מהבסיס המתמטי, דרך מנגנון Attention ועד Positional Encoding ו-RoPE.</p>
+            </div>
+            <div class="main-layout">
+                <div class="roadmap-box">
+                    <h3 class="box-title">🗺️ שלבי הלמידה</h3>
+                    <div class="roadmap-timeline">
+                    <div class="subject-group level-beginner">
+                        <h4 class="subject-title">
+                            <span>Prerequisites for Attention</span>
+                            <span class="subject-level-badge">Beginner</span>
+                        </h4>
+                        <div class="subject-items">
+                        <div class="step-item">
+                            <div class="step-marker">1</div>
+                            <div class="step-card-wrapper" data-url="https://www.youtube.com/watch?v=NkOv_k7r6no">
+                                <a href="https://www.youtube.com/watch?v=NkOv_k7r6no" target="_blank" rel="noopener noreferrer" class="step-card" aria-label="1. Why Do We Need Activation Functions in Neural Networks? - נפתח בלשונית חדשה">
+                                    <h4>1. Why Do We Need Activation Functions in Neural Networks?</h4>
+                                    <p>רענון קריטי על Activation Functions: למה הן נחוצות, ומה קורה בלעדיהן.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-pressed="false" aria-label="סמן כמדריך שנצפה" title="סמן כמדריך שנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">2</div>
+                            <div class="step-card-wrapper" data-url="https://youtu.be/KpKog-L9veg?si=guvbHH3Y7vBh2g4D">
+                                <a href="https://youtu.be/KpKog-L9veg?si=guvbHH3Y7vBh2g4D" target="_blank" rel="noopener noreferrer" class="step-card" aria-label="2. Neural Networks Part 5: ArgMax and SoftMax - נפתח בלשונית חדשה">
+                                    <h4>2. Neural Networks Part 5: ArgMax and SoftMax</h4>
+                                    <p>הבנה אינטואיטיבית של Softmax ו-ArgMax, בסיס חשוב לחישוב הסתברויות ו-Attention.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-pressed="false" aria-label="סמן כמדריך שנצפה" title="סמן כמדריך שנצפה">✓</button>
+                            </div>
+                        </div></div>
+                    </div>
+                    <div class="subject-group level-intermediate">
+                        <h4 class="subject-title">
+                            <span>Transformer Big Picture</span>
+                            <span class="subject-level-badge">Intermediate</span>
+                        </h4>
+                        <div class="subject-items">
+                        <div class="step-item">
+                            <div class="step-marker">3</div>
+                            <div class="step-card-wrapper" data-url="https://www.youtube.com/watch?v=wjZofJX0v4M">
+                                <a href="https://www.youtube.com/watch?v=wjZofJX0v4M" target="_blank" rel="noopener noreferrer" class="step-card" aria-label="3. Transformers, the tech behind LLMs | Deep Learning Chapter 5 - נפתח בלשונית חדשה">
+                                    <h4>3. Transformers, the tech behind LLMs | Deep Learning Chapter 5</h4>
+                                    <p>סקירה ויזואלית מצוינת של Transformer כרעיון כולל והקשר שלו למודלי שפה גדולים.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-pressed="false" aria-label="סמן כמדריך שנצפה" title="סמן כמדריך שנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">4</div>
+                            <div class="step-card-wrapper" data-url="https://www.youtube.com/watch?v=eMlx5fFNoYc">
+                                <a href="https://www.youtube.com/watch?v=eMlx5fFNoYc" target="_blank" rel="noopener noreferrer" class="step-card" aria-label="4. Attention in transformers, step-by-step | Deep Learning Chapter 6 - נפתח בלשונית חדשה">
+                                    <h4>4. Attention in transformers, step-by-step | Deep Learning Chapter 6</h4>
+                                    <p>פירוק מנגנון Attention שלב-אחר-שלב בצורה אינטואיטיבית וברורה.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-pressed="false" aria-label="סמן כמדריך שנצפה" title="סמן כמדריך שנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">5</div>
+                            <div class="step-card-wrapper" data-url="https://www.youtube.com/watch?v=9-Jl0dxWQs8">
+                                <a href="https://www.youtube.com/watch?v=9-Jl0dxWQs8" target="_blank" rel="noopener noreferrer" class="step-card" aria-label="5. How might LLMs store facts | Deep Learning Chapter 7 - נפתח בלשונית חדשה">
+                                    <h4>5. How might LLMs store facts | Deep Learning Chapter 7</h4>
+                                    <p>המשך טבעי לפרקי ה-Transformer של 3Blue1Brown, עם התמקדות באופן שבו מודלי שפה עשויים לייצג ולשמור עובדות.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-pressed="false" aria-label="סמן כמדריך שנצפה" title="סמן כמדריך שנצפה">✓</button>
+                            </div>
+                        </div></div>
+                    </div>
+                    <div class="subject-group level-intermediate">
+                        <h4 class="subject-title">
+                            <span>Attention Internals and Math</span>
+                            <span class="subject-level-badge">Intermediate</span>
+                        </h4>
+                        <div class="subject-items">
+                        <div class="step-item">
+                            <div class="step-marker">6</div>
+                            <div class="step-card-wrapper" data-url="https://www.youtube.com/watch?v=5fNefE9Fhpg">
+                                <a href="https://www.youtube.com/watch?v=5fNefE9Fhpg" target="_blank" rel="noopener noreferrer" class="step-card" aria-label="6. Query, Key and Value Matrix for Attention Mechanisms in Large Language Models - נפתח בלשונית חדשה">
+                                    <h4>6. Query, Key and Value Matrix for Attention Mechanisms in Large Language Models</h4>
+                                    <p>היכרות ישירה עם מטריצות Q, K, V ואיך הן מייצגות מידע במנגנון Attention.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-pressed="false" aria-label="סמן כמדריך שנצפה" title="סמן כמדריך שנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">7</div>
+                            <div class="step-card-wrapper" data-url="https://www.youtube.com/watch?v=UmANg8hh4uQ">
+                                <a href="https://www.youtube.com/watch?v=UmANg8hh4uQ" target="_blank" rel="noopener noreferrer" class="step-card" aria-label="7. Understanding the mathematics Behind Dot products and Vector Alignment for Attention Mechanisms - נפתח בלשונית חדשה">
+                                    <h4>7. Understanding the mathematics Behind Dot products and Vector Alignment for Attention Mechanisms</h4>
+                                    <p>למה מכפלה סקלרית מודדת דמיון בין וקטורים, ואיך זה הופך לציון Attention.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-pressed="false" aria-label="סמן כמדריך שנצפה" title="סמן כמדריך שנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">8</div>
+                            <div class="step-card-wrapper" data-url="https://www.youtube.com/watch?v=LvAq5u30U7Q">
+                                <a href="https://www.youtube.com/watch?v=LvAq5u30U7Q" target="_blank" rel="noopener noreferrer" class="step-card" aria-label="8. Calculating Raw Attention Scores for Attention Mechanisms in LLMs and Transformers - נפתח בלשונית חדשה">
+                                    <h4>8. Calculating Raw Attention Scores for Attention Mechanisms in LLMs and Transformers</h4>
+                                    <p>מעבר פרקטי על חישוב ציוני Attention גולמיים לפני Softmax וסקיילינג.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-pressed="false" aria-label="סמן כמדריך שנצפה" title="סמן כמדריך שנצפה">✓</button>
+                            </div>
+                        </div></div>
+                    </div>
+                    <div class="subject-group level-advanced">
+                        <h4 class="subject-title">
+                            <span>Positional Encoding and RoPE</span>
+                            <span class="subject-level-badge">Advanced</span>
+                        </h4>
+                        <div class="subject-items">
+                        <div class="step-item">
+                            <div class="step-marker">9</div>
+                            <div class="step-card-wrapper" data-url="https://www.youtube.com/watch?v=SMBK8tK8h9s">
+                                <a href="https://www.youtube.com/watch?v=SMBK8tK8h9s" target="_blank" rel="noopener noreferrer" class="step-card" aria-label="9. Visualizing Positional Encodings in Sine and Cosine Graphs - נפתח בלשונית חדשה">
+                                    <h4>9. Visualizing Positional Encodings in Sine and Cosine Graphs</h4>
+                                    <p>הבנה ויזואלית של Positional Encoding סינוסואידלי ולמה הוא משמר מידע על מיקום.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-pressed="false" aria-label="סמן כמדריך שנצפה" title="סמן כמדריך שנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">10</div>
+                            <div class="step-card-wrapper" data-url="https://www.youtube.com/watch?v=1biZfFLPRSY">
+                                <a href="https://www.youtube.com/watch?v=1biZfFLPRSY" target="_blank" rel="noopener noreferrer" class="step-card" aria-label="10. Positional embeddings in transformers EXPLAINED (Why add, not concat?) - נפתח בלשונית חדשה">
+                                    <h4>10. Positional embeddings in transformers EXPLAINED (Why add, not concat?)</h4>
+                                    <p>הסבר פרקטי למה מוסיפים Embeddings ולא מחברים, ואיך זה עובד באימון.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-pressed="false" aria-label="סמן כמדריך שנצפה" title="סמן כמדריך שנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">11</div>
+                            <div class="step-card-wrapper" data-url="https://www.youtube.com/watch?v=8Ddq2jJis9Y">
+                                <a href="https://www.youtube.com/watch?v=8Ddq2jJis9Y" target="_blank" rel="noopener noreferrer" class="step-card" aria-label="11. How Rotary Position Embedding Supercharges Modern LLMs [RoPE] - נפתח בלשונית חדשה">
+                                    <h4>11. How Rotary Position Embedding Supercharges Modern LLMs [RoPE]</h4>
+                                    <p>העמקה ב-RoPE: האינטואיציה המתמטית, היתרונות וההשפעה על מודלים מודרניים.</p>
+                                    <span class="step-link">צפה במדריך ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-pressed="false" aria-label="סמן כמדריך שנצפה" title="סמן כמדריך שנצפה">✓</button>
+                            </div>
+                        </div></div>
+                    </div></div>
+                </div>
+                <div class="tools-box">
+                    <h3 class="box-title">🛠️ כלים שימושיים</h3>
+                    <div class="tools-list">
+                <div class="tool-card">
+                    <div class="tool-info">
+                        <h5>The Illustrated Transformer</h5>
+                        <p>מאמר ויזואלי מצוין להבנת הארכיטקטורה של Transformer שלב-אחר-שלב.</p>
+                    </div>
+                    <a href="https://jalammar.github.io/illustrated-transformer/" target="_blank" rel="noopener noreferrer" class="tool-btn" aria-label="The Illustrated Transformer - נפתח בלשונית חדשה">פתח כלי</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-info">
+                        <h5>Attention Is All You Need (Paper)</h5>
+                        <p>המאמר המקורי שהציג את ארכיטקטורת Transformer ושינה את עולם ה-NLP.</p>
+                    </div>
+                    <a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener noreferrer" class="tool-btn" aria-label="Attention Is All You Need (Paper) - נפתח בלשונית חדשה">פתח כלי</a>
                 </div></div>
                 </div>
             </div>
