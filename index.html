@@ -551,6 +551,12 @@
             .a11y-toolbar { padding-top: 0.6rem; gap: 0.42rem; }
             .a11y-main-btn { padding: 0.55rem 0.7rem; }
             .a11y-options { min-width: 0; }
+            .a11y-toolbar {
+                max-height: 280px;
+                opacity: 1;
+                overflow: hidden;
+                transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease, padding-top 0.25s ease, border-top-color 0.25s ease;
+            }
             /* Mobile: desktop tab hidden, bottom handle shown */
             .nav-tab-btn { display: none !important; }
             .nav-handle-btn {
@@ -583,6 +589,13 @@
             }
             .nav-links-wrapper > .nav-links { min-height: 0; }
             body.nav-collapsed .nav-links-wrapper { grid-template-rows: 0fr; opacity: 0; }
+            body.nav-collapsed .a11y-toolbar {
+                max-height: 0;
+                opacity: 0;
+                padding-top: 0;
+                border-top-color: transparent;
+                pointer-events: none;
+            }
             /* Nav panel itself never collapses on mobile */
             body.nav-collapsed nav { transform: none !important; opacity: 1 !important; pointer-events: auto !important; clip-path: none !important; }
             body.nav-collapsed main { margin-right: 0; }
@@ -1670,6 +1683,14 @@
             toggleBtn.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
         }
 
+        function closeA11yToolbar() {
+            const toolbar = document.getElementById('a11yToolbar');
+            const toggleBtn = document.getElementById('a11yToggle');
+            if (!toolbar || !toggleBtn) return;
+            toolbar.classList.remove('open');
+            toggleBtn.setAttribute('aria-expanded', 'false');
+        }
+
         function getSeen() {
             try { return JSON.parse(localStorage.getItem(SEEN_KEY) || '{}'); } catch(e) { return {}; }
         }
@@ -1707,6 +1728,9 @@
 
         function toggleNav() {
             const collapsed = document.body.classList.toggle('nav-collapsed');
+            if (collapsed) {
+                closeA11yToolbar();
+            }
             try { localStorage.setItem(NAV_KEY, collapsed ? '1' : '0'); } catch(e) {}
             updateNavToggleLabels(collapsed);
         }
