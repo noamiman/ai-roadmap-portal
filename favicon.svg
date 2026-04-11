@@ -1,32 +1,40 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="AI Chip Icon">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="AI Liquid Glass Icon">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0ea5e9"/>
-      <stop offset="100%" stop-color="#0369a1"/>
+    <linearGradient id="bgBlend" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6ab8ff"/>
+      <stop offset="55%" stop-color="#9ed9ff"/>
+      <stop offset="100%" stop-color="#9ff4e3"/>
     </linearGradient>
-    <linearGradient id="chip" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#ffffff"/>
-      <stop offset="100%" stop-color="#dbeafe"/>
+    <linearGradient id="glassPanel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.72"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.18"/>
     </linearGradient>
+    <linearGradient id="topSheen" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.56"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="softBlur" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2.8"/>
+    </filter>
   </defs>
 
-  <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#bg)"/>
+  <rect x="4" y="4" width="56" height="56" rx="16" fill="url(#bgBlend)"/>
 
-  <!-- chip legs -->
-  <g stroke="#bae6fd" stroke-width="2" stroke-linecap="round" opacity="0.95">
-    <path d="M20 12V16"/><path d="M28 12V16"/><path d="M36 12V16"/><path d="M44 12V16"/>
-    <path d="M20 48V52"/><path d="M28 48V52"/><path d="M36 48V52"/><path d="M44 48V52"/>
-    <path d="M12 20H16"/><path d="M12 28H16"/><path d="M12 36H16"/><path d="M12 44H16"/>
-    <path d="M48 20H52"/><path d="M48 28H52"/><path d="M48 36H52"/><path d="M48 44H52"/>
-  </g>
+  <circle cx="14" cy="14" r="12" fill="#ffffff" opacity="0.38" filter="url(#softBlur)"/>
+  <circle cx="52" cy="50" r="14" fill="#8cf3e6" opacity="0.28" filter="url(#softBlur)"/>
 
-  <!-- chip body -->
-  <rect x="18" y="18" width="28" height="28" rx="8" fill="url(#chip)"/>
-  <rect x="22" y="22" width="20" height="20" rx="5" fill="#0ea5e9" opacity="0.2"/>
+  <rect x="11" y="11" width="42" height="42" rx="14" fill="url(#glassPanel)"/>
+  <rect x="11" y="11" width="42" height="42" rx="14" fill="none" stroke="#ffffff" stroke-opacity="0.62"/>
 
-  <!-- AI glyph -->
-  <g fill="#075985">
-    <path d="M24.8 39.4L29 24.6h2.6l4.2 14.8h-2.5l-.8-3h-4.4l-.8 3h-2.5zm3.9-5.1h3.3l-1.6-6.1h-.1l-1.6 6.1z"/>
-    <rect x="37.3" y="24.6" width="2.4" height="14.8" rx="1.2"/>
+  <ellipse cx="31.5" cy="18" rx="16" ry="5" fill="url(#topSheen)"/>
+  <ellipse cx="34" cy="42" rx="12" ry="4" fill="#4ca8ff" opacity="0.16"/>
+
+  <circle cx="45" cy="19" r="6" fill="#ffffff" fill-opacity="0.3"/>
+  <circle cx="43.8" cy="17.8" r="1.8" fill="#ffffff" fill-opacity="0.8"/>
+
+  <g fill="#0f3f83">
+    <path d="M21.9 41.2L27.2 23.8h3.2l5.3 17.4h-3.3l-1-3.6h-5.2l-1 3.6h-3.3zm5.1-6h3.9l-1.9-6.8h-.1L27 35.2z"/>
+    <rect x="37.8" y="23.8" width="3.1" height="17.4" rx="1.5"/>
   </g>
 </svg>
