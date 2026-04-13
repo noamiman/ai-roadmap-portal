@@ -84,6 +84,11 @@
                 "title": "Neural Network Playground",
                 "desc": "סימולטור אינטראקטיבי המאפשר להבין ויזואלית איך רשתות נוירונים לומדות, על ידי שינוי פרמטרים בזמן אמת.",
                 "url": "https://playground.tensorflow.org/"
+            },
+            {
+                "title": "Diffusion Playground <strong>(Recommended)</strong>",
+                "desc": "מדריך אינטראקטיבי להבנת היסודות של מודלי Diffusion ודרך העבודה שלהם צעד-אחר-צעד.",
+                "url": "https://diffusion.fyi/tutorials/fundamentals"
             }
         ],
         "subjects": [
