@@ -86,6 +86,11 @@
                 "url": "https://playground.tensorflow.org/"
             },
             {
+                "title": "Machine Learning Mastery",
+                "desc": "אתר עם מאמרים מעולים על יסודות רשתות נוירונים, למידת מכונה ונושאי AI נוספים - מעולה ללמידה שיטתית.",
+                "url": "https://machinelearningmastery.com/"
+            },
+            {
                 "title": "Diffusion Playground <strong>(Recommended)</strong>",
                 "desc": "מדריך אינטראקטיבי להבנת היסודות של מודלי Diffusion ודרך העבודה שלהם צעד-אחר-צעד.",
                 "url": "https://diffusion.fyi/tutorials/fundamentals"
