@@ -547,5 +547,32 @@
                 ]
             }
         ]
+    },
+    "model_optimization": {
+        "title": "Model Optimization & Efficiency",
+        "emoji": "⚙️",
+        "description": "טכניקות לשיפור יעילות וביצועים של מודלי AI, כולל קוונטיזציה, גיזום, ושיטות נוספות להקטנת מודלים והאצתם.",
+        "difficulty": "advanced",
+        "duration": "1-2 months",
+        "tags": [
+            "quantization",
+            "pruning",
+            "model compression",
+            "inference optimization"
+        ],
+        "tools": [],
+        "subjects": [
+            {
+                "title": "Quantization",
+                "level": "intermediate",
+                "guides": [
+                    {
+                        "title": "1. What is Quantization?",
+                        "desc": "מבוא מקיף לקוונטיזציה: מה הרעיון, למה הוא חשוב, ואיך הוא מקטין את גודל המודל ומאיץ את מהירות ההסקה (inference).",
+                        "url": "https://youtu.be/SXeThN5S7u0?si=myf52w9qMk3ANQJs"
+                    }
+                ]
+            }
+        ]
     }
 }
