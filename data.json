@@ -570,6 +570,11 @@
                         "title": "1. What is Quantization?",
                         "desc": "מבוא מקיף לקוונטיזציה: מה הרעיון, למה הוא חשוב, ואיך הוא מקטין את גודל המודל ומאיץ את מהירות ההסקה (inference).",
                         "url": "https://youtu.be/SXeThN5S7u0?si=myf52w9qMk3ANQJs"
+                    },
+                    {
+                        "title": "2. KV Cache Explained",
+                        "desc": "הסבר מעולה על איך KV Cache עובד, למה הוא חוסך המון זיכרון וחישובים בזמן הסקה (inference) במודלי שפה.",
+                        "url": "https://youtu.be/RUlQmkFY4F8?si=fepsWu1RcFRbtnSW"
                     }
                 ]
             }
