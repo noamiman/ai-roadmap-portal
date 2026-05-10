@@ -58,6 +58,12 @@
                 "url": "https://www.youtube.com/@ShawhinTalebi",
                 "platform": "YouTube",
                 "desc": "תוכן פרקטי ומעודכן על AI Engineering, עבודה עם LLMs, בניית סוכנים ופרויקטים אמיתיים לפרודקשן."
+            },
+            {
+                "name": "Andrej Karpathy",
+                "url": "https://www.youtube.com/@AndrejKarpathy",
+                "platform": "YouTube",
+                "desc": "הרצאות טכניות עמוקות על בניית רשתות נוירונים מאפס. חובה למי שרוצה להבין איך דברים עובדים מתחת למכסה המנוע."
             }
         ]
     },
