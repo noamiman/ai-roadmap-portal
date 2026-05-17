@@ -214,6 +214,13 @@ def generate_ultimate_portal(data, output_file="index.html"):
                                     <span class="contact-link-subtitle">לפרויקטים שלי</span>
                                 </span>
                             </a>
+                            <a href="https://noamiman.github.io/" target="_blank" rel="noopener noreferrer" class="contact-link-card" aria-label="My Website - נפתח בלשונית חדשה">
+                                <span class="contact-link-icon">🌐</span>
+                                <span class="contact-link-text">
+                                    <span class="contact-link-title">My Website</span>
+                                    <span class="contact-link-subtitle">לאתר שלי</span>
+                                </span>
+                            </a>
                         </div>
                     </div>
 
