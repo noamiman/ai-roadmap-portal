@@ -581,6 +581,11 @@
                         "title": "2. KV Cache Explained",
                         "desc": "הסבר מעולה על איך KV Cache עובד, למה הוא חוסך המון זיכרון וחישובים בזמן הסקה (inference) במודלי שפה.",
                         "url": "https://youtu.be/RUlQmkFY4F8?si=fepsWu1RcFRbtnSW"
+                    },
+                    {
+                        "title": "3. Fine-Tuning Local Models with LoRA in Python (Theory & Code)",
+                        "desc": "הדרכה על LoRA שמסבירה איך לבצע fine-tuning יעיל למודלים מקומיים עם פחות זיכרון ופחות פרמטרים לאימון.",
+                        "url": "https://youtu.be/XDOSVh9jJiA?si=6rgVNABDwwhdSdCF"
                     }
                 ]
             }
