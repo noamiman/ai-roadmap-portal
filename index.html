@@ -767,6 +767,10 @@
             <span class="nav-icon">🧩</span>
             <span class="nav-text">Transformer Architecture & Attention</span>
         </button>
+        <button type="button" class="nav-item " onclick="showSection('diffusion_models', this)" aria-controls="diffusion_models" >
+            <span class="nav-icon">🎨</span>
+            <span class="nav-text">Advanced Diffusion Models</span>
+        </button>
         <button type="button" class="nav-item " onclick="showSection('model_optimization', this)" aria-controls="model_optimization" >
             <span class="nav-icon">⚙️</span>
             <span class="nav-text">Model Optimization & Efficiency</span>
@@ -1683,6 +1687,179 @@
                 </div>
             </div>
         </section>
+        <section id="diffusion_models" class="content-section " tabindex="-1">
+            <div class="section-header">
+                <span class="badge">מסלול מתקדם</span>
+                <h2><span class="emoji">🎨</span> Advanced Diffusion Models</h2>
+                <p>סדרת הרצאות מתקדמת בת 12 פרקים על מודלי Diffusion, מהעקרונות המתמטיים ועד להבנת תהליך האימון והיצירה. מומלץ ללמוד אחרי Neural Networks ו-Transformers.</p>
+            </div>
+            <div class="main-layout">
+                <div class="roadmap-box">
+                    <h3 class="box-title">🗺️ סדרת ההרצאות</h3>
+                    <div class="roadmap-timeline">
+                    <div class="subject-group level-advanced">
+                        <h4 class="subject-title">
+                            <span>Diffusion Models — Michael Elad</span>
+                            <span class="subject-level-badge">Advanced · 12 episodes</span>
+                        </h4>
+                        <div class="subject-items">
+                        <div class="step-item">
+                            <div class="step-marker">1</div>
+                            <div class="step-card-wrapper" data-url="https://www.youtube.com/watch?v=K0VBcDxvZKw">
+                                <a href="https://www.youtube.com/watch?v=K0VBcDxvZKw" target="_blank" rel="noopener noreferrer" class="step-card" aria-label="1. Diffusion Models — 2360759 Meeting 01 — Michael Elad - נפתח בלשונית חדשה">
+                                    <h4>1. Diffusion Models — Meeting 01</h4>
+                                    <p>הפרק הראשון בסדרת ההרצאות של <strong>Michael Elad</strong>, המהווה כניסה מתקדמת לעולם מודלי ה-Diffusion.</p>
+                                    <span class="step-link">צפה בפרק ב-YouTube ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-pressed="false" aria-label="סמן כמדריך שנצפה" title="סמן כמדריך שנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">2</div>
+                            <div class="step-card-wrapper" data-url="https://www.youtube.com/watch?v=K1M4Q5KUpkU&pp=0gcJCSsMAYcqIYzv">
+                                <a href="https://www.youtube.com/watch?v=K1M4Q5KUpkU&pp=0gcJCSsMAYcqIYzv" target="_blank" rel="noopener noreferrer" class="step-card" aria-label="2. Diffusion Models — Meeting 02 בעברית - Michael Elad - נפתח בלשונית חדשה">
+                                    <h4>2. Diffusion Models — Meeting 02</h4>
+                                    <p>המשך סדרת ההרצאות של Michael Elad על מודלי Diffusion.</p>
+                                    <span class="step-link">צפה בפרק ב-YouTube ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-pressed="false" aria-label="סמן כמדריך שנצפה" title="סמן כמדריך שנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">3</div>
+                            <div class="step-card-wrapper" data-url="https://www.youtube.com/watch?v=PNi08DpiFsU">
+                                <a href="https://www.youtube.com/watch?v=PNi08DpiFsU" target="_blank" rel="noopener noreferrer" class="step-card" aria-label="3. Diffusion Models — Meeting 03 בעברית - Michael Elad - נפתח בלשונית חדשה">
+                                    <h4>3. Diffusion Models — Meeting 03</h4>
+                                    <p>הפרק השלישי בגרסה העברית של סדרת ההרצאות על מודלי Diffusion.</p>
+                                    <span class="step-link">צפה בפרק ב-YouTube ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-pressed="false" aria-label="סמן כמדריך שנצפה" title="סמן כמדריך שנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">4</div>
+                            <div class="step-card-wrapper" data-url="https://www.youtube.com/watch?v=ByMrPAZlfD4">
+                                <a href="https://www.youtube.com/watch?v=ByMrPAZlfD4" target="_blank" rel="noopener noreferrer" class="step-card" aria-label="4. Diffusion Models — Meeting 04 בעברית - Michael Elad - נפתח בלשונית חדשה">
+                                    <h4>4. Diffusion Models — Meeting 04</h4>
+                                    <p>הפרק הרביעי בגרסה העברית של סדרת ההרצאות על מודלי Diffusion.</p>
+                                    <span class="step-link">צפה בפרק ב-YouTube ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-pressed="false" aria-label="סמן כמדריך שנצפה" title="סמן כמדריך שנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">5</div>
+                            <div class="step-card-wrapper" data-url="https://www.youtube.com/watch?v=6pGFaBYXT-A">
+                                <a href="https://www.youtube.com/watch?v=6pGFaBYXT-A" target="_blank" rel="noopener noreferrer" class="step-card" aria-label="5. Diffusion Models — Meeting 05 בעברית - Michael Elad - נפתח בלשונית חדשה">
+                                    <h4>5. Diffusion Models — Meeting 05</h4>
+                                    <p>הפרק החמישי בגרסה העברית של סדרת ההרצאות על מודלי Diffusion.</p>
+                                    <span class="step-link">צפה בפרק ב-YouTube ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-pressed="false" aria-label="סמן כמדריך שנצפה" title="סמן כמדריך שנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">6</div>
+                            <div class="step-card-wrapper" data-url="https://www.youtube.com/watch?v=4NWhvZWfciI">
+                                <a href="https://www.youtube.com/watch?v=4NWhvZWfciI" target="_blank" rel="noopener noreferrer" class="step-card" aria-label="6. Diffusion Models — Meeting 06 בעברית - Michael Elad - נפתח בלשונית חדשה">
+                                    <h4>6. Diffusion Models — Meeting 06</h4>
+                                    <p>הפרק השישי בגרסה העברית של סדרת ההרצאות על מודלי Diffusion.</p>
+                                    <span class="step-link">צפה בפרק ב-YouTube ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-pressed="false" aria-label="סמן כמדריך שנצפה" title="סמן כמדריך שנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">7</div>
+                            <div class="step-card-wrapper" data-url="https://www.youtube.com/watch?v=vZe5nnaXWy8">
+                                <a href="https://www.youtube.com/watch?v=vZe5nnaXWy8" target="_blank" rel="noopener noreferrer" class="step-card" aria-label="7. Diffusion Models — Meeting 07 בעברית - Michael Elad - נפתח בלשונית חדשה">
+                                    <h4>7. Diffusion Models — Meeting 07</h4>
+                                    <p>הפרק השביעי בגרסה העברית של סדרת ההרצאות על מודלי Diffusion.</p>
+                                    <span class="step-link">צפה בפרק ב-YouTube ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-pressed="false" aria-label="סמן כמדריך שנצפה" title="סמן כמדריך שנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">8</div>
+                            <div class="step-card-wrapper" data-url="https://www.youtube.com/watch?v=Ro4v4z8YAsk">
+                                <a href="https://www.youtube.com/watch?v=Ro4v4z8YAsk" target="_blank" rel="noopener noreferrer" class="step-card" aria-label="8. SDE/ODE Interpretation - Michael Elad - נפתח בלשונית חדשה">
+                                    <h4>8. SDE/ODE Interpretation</h4>
+                                    <p>פרשנות של תהליכי Diffusion באמצעות משוואות דיפרנציאליות סטוכסטיות ורגילות.</p>
+                                    <span class="step-link">צפה בפרק ב-YouTube ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-pressed="false" aria-label="סמן כמדריך שנצפה" title="סמן כמדריך שנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">9</div>
+                            <div class="step-card-wrapper" data-url="https://www.youtube.com/watch?v=ea0eqqEj25w">
+                                <a href="https://www.youtube.com/watch?v=ea0eqqEj25w" target="_blank" rel="noopener noreferrer" class="step-card" aria-label="9. Students Lectures - Michael Elad - נפתח בלשונית חדשה">
+                                    <h4>9. Students Lectures</h4>
+                                    <p>הרצאות סטודנטים והצגת נושאים מתקדמים הקשורים למודלי Diffusion.</p>
+                                    <span class="step-link">צפה בפרק ב-YouTube ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-pressed="false" aria-label="סמן כמדריך שנצפה" title="סמן כמדריך שנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">10</div>
+                            <div class="step-card-wrapper" data-url="https://www.youtube.com/watch?v=zgE8nUYU-ng">
+                                <a href="https://www.youtube.com/watch?v=zgE8nUYU-ng" target="_blank" rel="noopener noreferrer" class="step-card" aria-label="10. Students Lectures - Michael Elad - נפתח בלשונית חדשה">
+                                    <h4>10. Students Lectures</h4>
+                                    <p>הרצאות סטודנטים נוספות להעמקת ההבנה והיישומים של Diffusion.</p>
+                                    <span class="step-link">צפה בפרק ב-YouTube ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-pressed="false" aria-label="סמן כמדריך שנצפה" title="סמן כמדריך שנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">11</div>
+                            <div class="step-card-wrapper" data-url="https://www.youtube.com/watch?v=OiCbAwJMmWU">
+                                <a href="https://www.youtube.com/watch?v=OiCbAwJMmWU" target="_blank" rel="noopener noreferrer" class="step-card" aria-label="11. Students Lectures - Michael Elad - נפתח בלשונית חדשה">
+                                    <h4>11. Students Lectures</h4>
+                                    <p>פרק נוסף בסדרת ההרצאות והצגות הסטודנטים של הקורס.</p>
+                                    <span class="step-link">צפה בפרק ב-YouTube ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-pressed="false" title="סמן כמדריך שנצפה">✓</button>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-marker">12</div>
+                            <div class="step-card-wrapper" data-url="https://www.youtube.com/watch?v=LrTan-ZiVS8">
+                                <a href="https://www.youtube.com/watch?v=LrTan-ZiVS8" target="_blank" rel="noopener noreferrer" class="step-card" aria-label="12. Students Lectures - Michael Elad - נפתח בלשונית חדשה">
+                                    <h4>12. Students Lectures</h4>
+                                    <p>פרק הסיום שסופק בסדרה, עם הרצאות סטודנטים בנושאים מתקדמים.</p>
+                                    <span class="step-link">צפה בפרק ב-YouTube ←</span>
+                                </a>
+                                <button type="button" class="seen-btn" onclick="toggleSeen(this)" aria-pressed="false" aria-label="סמן כמדריך שנצפה" title="סמן כמדריך שנצפה">✓</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="tools-box">
+                    <h3 class="box-title">🛠️ חומרי העמקה</h3>
+                    <div class="tools-list">
+                <div class="tool-card">
+                    <div class="tool-info">
+                        <h5>Denoising Diffusion Probabilistic Models</h5>
+                        <p>המאמר המכונן של Ho et al. להבנת הבסיס התאורטי של DDPM.</p>
+                    </div>
+                    <a href="https://arxiv.org/abs/2006.11239" target="_blank" rel="noopener noreferrer" class="tool-btn" aria-label="Denoising Diffusion Probabilistic Models - נפתח בלשונית חדשה">פתח מאמר</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-info">
+                        <h5>Michael Elad on YouTube</h5>
+                        <p>הערוץ של יוצר הסדרה, Michael Elad.</p>
+                    </div>
+                    <a href="https://www.youtube.com/@michaelelad5850" target="_blank" rel="noopener noreferrer" class="tool-btn" aria-label="Michael Elad on YouTube - נפתח בלשונית חדשה">פתח ערוץ</a>
+                </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <section id="model_optimization" class="content-section " tabindex="-1">
             
             <div class="section-header">
@@ -1817,7 +1994,16 @@
                 </div>
                 <p class="creator-desc">הרצאות טכניות עמוקות על בניית רשתות נוירונים מאפס. חובה למי שרוצה להבין איך דברים עובדים מתחת למכסה המנוע.</p>
                 <span class="creator-link">בקרו בערוץ →</span>
-            </a></div>
+            </a>
+            <a href="https://www.youtube.com/@michaelelad5850" target="_blank" rel="noopener noreferrer" class="creator-panel-card" aria-label="Michael Elad - נפתח בלשונית חדשה">
+                <div class="creator-panel-head">
+                    <span class="creator-name">Michael Elad</span>
+                    <span class="creator-platform-badge platform-youtube">YouTube</span>
+                </div>
+                <p class="creator-desc">סדרת הרצאות מתקדמת על Diffusion Models, עם העמקה מתמטית ותאורטית בהבנת המודלים.</p>
+                <span class="creator-link">בקרו בערוץ →</span>
+            </a>
+            </div>
         </aside>
 
     <div id="videoPlayerOverlay" class="video-player-overlay" role="dialog" aria-modal="true" aria-labelledby="videoPlayerTitle" aria-hidden="true">
