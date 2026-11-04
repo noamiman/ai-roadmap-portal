@@ -796,6 +796,9 @@
             -webkit-backdrop-filter: none;
         }
         .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
             color: var(--text);
             text-align: right;
             padding: 0 0.85rem 1.4rem;
@@ -804,7 +807,14 @@
             font-size: 1rem;
             letter-spacing: 1.5px;
         }
-        .logo::before { content: '◈ '; color: var(--accent); }
+        .logo-mark {
+            width: 24px;
+            height: 24px;
+            flex: 0 0 24px;
+            color: var(--accent);
+        }
+        .logo-mark .logo-fill { fill: currentColor; }
+        .logo-mark .logo-line { fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.8; }
         .nav-item {
             gap: 0.75rem;
             padding: 0.78rem 0.85rem;
@@ -1112,7 +1122,7 @@
                 text-align: center;
                 font-size: 0;
             }
-            .logo::before { font-size: 1.1rem; }
+            .logo-mark { width: 26px; height: 26px; }
             .nav-item {
                 justify-content: center;
                 padding: 0.45rem;
@@ -1433,7 +1443,7 @@
     <a href="#mainContent" class="skip-link">דלג לתוכן הראשי</a>
     <div id="a11yLive" class="sr-only" aria-live="polite" aria-atomic="true"></div>
     <nav aria-label="ניווט ראשי">
-        <div class="logo">AI_ULTIMATE</div>
+        <div class="logo"><svg class="logo-mark" viewBox="0 0 24 24" aria-hidden="true"><path class="logo-fill" d="M12 2.5 20.25 7v10L12 21.5 3.75 17V7L12 2.5Z" opacity=".16"/><path class="logo-line" d="m12 2.5 8.25 4.5v10L12 21.5 3.75 17V7L12 2.5Z"/><path class="logo-line" d="M8 14.5V9.2l4-2.2 4 2.2v5.3M8 14.5l4 2.2 4-2.2M12 7v9.7"/></svg><span>AI_ULTIMATE</span></div>
         <div class="nav-links-wrapper">
             <div class="nav-links">
         <button type="button" class="nav-item active" onclick="showSection('home', this)" aria-controls="home" aria-current="page">
